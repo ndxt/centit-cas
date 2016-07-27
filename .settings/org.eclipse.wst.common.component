@@ -6,11 +6,8 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
-        <dependent-module deploy-path="/" handle="module:/overlay/var/M2_REPO/org/jasig/cas/cas-server-webapp/4.2.1/cas-server-webapp-4.2.1.war?unpackFolder=target/m2e-wtp/overlays&amp;includes=**/**&amp;excludes=META-INF/MANIFEST.MF">
-            <dependency-type>consumes</dependency-type>
-        </dependent-module>
-        <dependent-module deploy-path="/" handle="module:/overlay/slf/?includes=**/**&amp;excludes=META-INF/MANIFEST.MF">
-            <dependency-type>consumes</dependency-type>
+        <dependent-module archiveName="cas-server-webapp-4.2.1.war" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/D:/MyAppData/maven3/repo/org/jasig/cas/cas-server-webapp/4.2.1/cas-server-webapp-4.2.1.war">
+            <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="centit-cas"/>
         <property name="java-output-path" value="/centit-cas/target/classes"/>
