@@ -62,7 +62,7 @@ public class CentitAuthenticationHandler extends AbstractJdbcUsernamePasswordAut
                                                        @Value("${cas.jdbc.authn.query.encode.sql:}")
                                                        final String sql) {
         super();
-        setName("密码{用户代码}认证服务器");
+        //setName("密码{用户代码}认证服务器");
         if (datasource != null) {
             setDataSource(datasource);            
         }
@@ -103,8 +103,6 @@ public class CentitAuthenticationHandler extends AbstractJdbcUsernamePasswordAut
 
     }
 
-
- 
     /**
      * Sets password field name. Default is {@link #DEFAULT_PASSWORD_FIELD}.
      *
