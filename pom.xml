@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.centit.framework</groupId>
+  <artifactId>centit-cas</artifactId>
+  <version>3.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>centit-cas</name>
+  <description>单点登录平台，集成cas-server-webapp，只添加和系统中的用户对接部分代码</description>
+  
+  <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+	<dependency>
+	  <groupId>org.jasig.cas</groupId>
+	  <artifactId>cas-server-webapp</artifactId>
+	  <version>4.2.1</version>
+	  <type>war</type>
+	</dependency>
+	
+	<dependency>
+	  <groupId>org.jasig.cas</groupId>
+	  <artifactId>cas-server-support-jdbc</artifactId>
+	  <version>4.2.1</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.centit.support</groupId>
+		<artifactId>centit-utils</artifactId>
+		<version>2.1.1-SNAPSHOT</version>
+	</dependency>
+	
+	<dependency>
+	  <groupId>com.oracle</groupId>
+	  <artifactId>ojdbc6</artifactId>
+	  <version>11.2.0.4</version>
+	  <scope>runtime</scope>
+	</dependency>
+		
+  </dependencies>	
+</project>
