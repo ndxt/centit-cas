@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
-    <display-name>Central Authentication System (CAS)</display-name>
+    <display-name>南大先腾单点登录平台(CAS)</display-name>
 
     <context-param>
         <param-name>isLog4jAutoInitializationDisabled</param-name>
@@ -226,8 +226,11 @@
 
     <session-config>
         <!-- Default to 5 minute session timeouts -->
-        <session-timeout>5</session-timeout>
-        <tracking-mode>COOKIE</tracking-mode>
+        <session-timeout>5</session-timeout>        
+        <cookie-config>
+            <http-only>true</http-only>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode> 
     </session-config>
 
     <error-page>
