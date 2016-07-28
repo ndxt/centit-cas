@@ -57,7 +57,7 @@
         <ref bean="successfulHandlerMetaDataPopulator" />
         <ref bean="rememberMeAuthenticationMetaDataPopulator" />
     </util:list>
-
+	<!-- http://blog.csdn.net/micytoy/article/details/51148951 -->
     <bean id="attributeRepository" class="org.jasig.services.persondir.support.NamedStubPersonAttributeDao"
           p:backingMap-ref="attrRepoBackingMap" />
 
