@@ -85,7 +85,7 @@
     <util:map id="authenticationHandlersResolvers">
         <entry key-ref="proxyAuthenticationHandler" value-ref="proxyPrincipalResolver" />
         <entry key-ref="ldapAuthenticationHandler" value-ref="primaryPrincipalResolver" />
-       <!--  <entry key-ref="primaryAuthenticationHandler" value-ref="primaryPrincipalResolver" /> -->
+        <entry key-ref="centitAuthenticationHandler" value-ref="primaryPrincipalResolver" />
     </util:map>
 
     <util:list id="authenticationMetadataPopulators">
@@ -99,7 +99,7 @@
     <!-- <alias name="acceptUsersAuthenticationHandler" alias="primaryAuthenticationHandler" /> -->
     <alias name="personDirectoryPrincipalResolver" alias="primaryPrincipalResolver" />
 
-	<alias name="centitAuthenticationHandler" alias="primaryAuthenticationHandler" />
+	<!-- <alias name="centitAuthenticationHandler" alias="primaryAuthenticationHandler" /> -->
 	<alias name="dataSource" alias="queryEncodeDatabaseDataSource" />
 
     <util:map id="attrRepoBackingMap">
