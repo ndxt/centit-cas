@@ -22,14 +22,13 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:sec="http://www.springframework.org/schema/security"
-       xmlns:ldaptive="http://www.ldaptive.org/schema/spring-ext"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
-       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
-       http://www.ldaptive.org/schema/spring-ext http://www.ldaptive.org/schema/spring-ext.xsd">
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
 
 	<bean id="dataSource"
 		  class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -48,43 +47,9 @@
 		  p:idleConnectionTestPeriod="${database.pool.idleConnectionTestPeriod}"
 		  p:preferredTestQuery="${database.pool.connectionHealthQuery}" />
 		    
-	<ldaptive:ad-authenticator id="authenticator"
-        ldapUrl="${ldap.url}"
-        userFilter="${ldap.authn.searchFilter}"
-        bindDn="${ldap.managerDn}"
-        bindCredential="${ldap.managerPassword}"
-        allowMultipleDns="${ldap.allowMultipleDns:false}"
-        connectTimeout="${ldap.connectTimeout}"
-        validateOnCheckOut="${ldap.pool.validateOnCheckout}"
-        failFastInitialize="true"
-        blockWaitTime="${ldap.pool.blockWaitTime}"
-        idleTime="${ldap.pool.idleTime}"
-        baseDn="${ldap.baseDn}"
-        maxPoolSize="${ldap.pool.maxSize}"
-        minPoolSize="${ldap.pool.minSize}"
-        validatePeriodically="${ldap.pool.validatePeriodically}"
-        validatePeriod="${ldap.pool.validatePeriod}"
-        prunePeriod="${ldap.pool.prunePeriod}"
-        useSSL="${ldap.use.ssl:false}"
-        subtreeSearch="${ldap.subtree.search:true}"
-        useStartTLS="${ldap.useStartTLS}" />
-        
-    <bean id="ldapAuthenticationHandler"
-		class="org.jasig.cas.authentication.LdapAuthenticationHandler"
-		      p:principalIdAttribute="sAMAccountName"
-		      c:authenticator-ref="authenticator">
-		    <property name="principalAttributeMap">
-		        <map>
-		            <entry key="displayName" value="simpleName" />
-		            <entry key="mail" value="email" />
-		            <entry key="memberOf" value="membership" />
-		        </map>
-		    </property>
-	</bean>
-	
+
     <util:map id="authenticationHandlersResolvers">
         <entry key-ref="proxyAuthenticationHandler" value-ref="proxyPrincipalResolver" />
-        <entry key-ref="ldapAuthenticationHandler" value="primaryPrincipalResolver" />
         <entry key-ref="primaryAuthenticationHandler" value-ref="primaryPrincipalResolver" />
     </util:map>
 

@@ -12,20 +12,27 @@
   
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<cas.version>4.2.3</cas.version>
   </properties>
 
   <dependencies>
 	<dependency>
 	  <groupId>org.jasig.cas</groupId>
 	  <artifactId>cas-server-webapp</artifactId>
-	  <version>4.2.3</version>
+	  <version>${cas.version}</version>
 	  <type>war</type>
 	</dependency>
 	
 	<dependency>
 	  <groupId>org.jasig.cas</groupId>
 	  <artifactId>cas-server-support-jdbc</artifactId>
-	  <version>4.2.3</version>
+	  <version>${cas.version}</version>
+	</dependency>
+	
+	<dependency>
+     <groupId>org.jasig.cas</groupId>
+     <artifactId>cas-server-support-ldap</artifactId>
+     <version>${cas.version}</version>
 	</dependency>
 	
 	<dependency>
