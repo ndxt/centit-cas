@@ -37,11 +37,11 @@
 
     <!-- Locale Resolver -->
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"
-          p:defaultLocale="${locale.default:zh_CN}" p:cookieName="productsvr" 
-            p:cookieDomain="centit.com"/>
+          p:defaultLocale="${locale.default:zh_CN}" p:cookieName="${locale.cookie.mame}"
+          p:cookieDomain="${locale.cookie.domain}" />
 
     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
-            p:paramName="${locale.param.name:locale}"/>
+          p:paramName="${locale.param.name:locale}"/>
           
     <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
 
