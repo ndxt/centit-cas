@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.centit.framework</groupId>
 	<artifactId>centit-cas</artifactId>
-	<version>3.0.1-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
     <modules>
         <module>centit-cas-login-plugin</module>
         <module>centit-cas-demo</module>
@@ -16,7 +16,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<centit.cas.version>3.0.1-SNAPSHOT</centit.cas.version>
+		<centit.cas.version>1.0.2-SNAPSHOT</centit.cas.version>
 		<jdk.version>1.8</jdk.version>
 
 		<centit.framework.version>4.0.4-SNAPSHOT</centit.framework.version>
