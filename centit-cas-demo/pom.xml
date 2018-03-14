@@ -18,7 +18,6 @@
     <properties>
         <!-- app.server could be -jetty,
            -undertow, -tomcat, or blank if you plan to provide appserver -->
-        <app.server></app.server>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -33,7 +32,13 @@
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
-            <artifactId>cas-server-webapp${app.server}</artifactId>
+            <artifactId>cas-server-support-oauth</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-webapp</artifactId>
             <version>${cas.version}</version>
             <type>war</type>
             <scope>runtime</scope>
