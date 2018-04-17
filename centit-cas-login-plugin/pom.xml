@@ -30,6 +30,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.centit.support</groupId>
+            <artifactId>centit-database-datasource</artifactId>
+            <version>${centit.commons.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-util</artifactId>
             <version>${cas.version}</version>
@@ -69,12 +75,6 @@
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-support-actions</artifactId>
             <version>${cas.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.centit.support</groupId>
-            <artifactId>centit-utils</artifactId>
-            <version>${centit.commons.version}</version>
         </dependency>
 
         <dependency>

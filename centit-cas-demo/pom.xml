@@ -30,11 +30,11 @@
             <version>${centit.cas.version}</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-support-oauth</artifactId>
             <version>${cas.version}</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
@@ -88,13 +88,13 @@
                     <recompressZippedFiles>false</recompressZippedFiles>
                     <archive>
                         <compress>false</compress>
-                        <manifestFile>${project.build.directory}/war/work/org.apereo.cas/cas-server-webapp${app.server}/META-INF/MANIFEST.MF
+                        <manifestFile>${project.build.directory}/war/work/org.apereo.cas/cas-server-webapp/META-INF/MANIFEST.MF
                         </manifestFile>
                     </archive>
                     <overlays>
                         <overlay>
                             <groupId>org.apereo.cas</groupId>
-                            <artifactId>cas-server-webapp${app.server}</artifactId>
+                            <artifactId>cas-server-webapp</artifactId>
                         </overlay>
                     </overlays>
                 </configuration>
