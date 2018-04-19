@@ -1,5 +1,6 @@
 package com.centit.framework.cas.model;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apereo.cas.authentication.RememberMeCredential;
 
@@ -45,11 +46,18 @@ public abstract class AbstractPasswordCredential extends ComplexAuthCredential i
         if (this.password != null ? !this.password.equals(other.password) : other.password != null) {
             return false;
         }
-
         if( this.username != null ? !this.username.equals(other.username) : other.username != null){
             return false;
         }
         return this.rememberMe == other.rememberMe;
+    }
+
+    @Override
+    public String checkInput(){
+        if(StringUtils.isBlank(this.username) || StringUtils.isBlank(this.password)){
+            return "请输入正确的用户名和密码。";
+        }
+        return null;
     }
 
     @Override

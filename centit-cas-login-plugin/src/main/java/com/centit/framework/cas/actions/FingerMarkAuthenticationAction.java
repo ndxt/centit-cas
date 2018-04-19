@@ -1,5 +1,6 @@
 package com.centit.framework.cas.actions;
 
+import com.centit.framework.cas.model.AbstractPasswordCredential;
 import com.centit.framework.cas.model.FingerMarkCredential;
 import org.apereo.cas.authentication.adaptive.AdaptiveAuthenticationPolicy;
 import org.apereo.cas.web.flow.resolver.CasDelegatingWebflowEventResolver;
@@ -24,15 +25,10 @@ public class FingerMarkAuthenticationAction extends AbstractComplexAuthenticatio
     }
 
     @Override
-    public boolean doPrepareExecute(RequestContext requestContext) {
+    public AbstractPasswordCredential doPrepareExecute(RequestContext requestContext) {
         //HttpServletRequest request =WebUtils.getHttpServletRequestFromExternalWebflowContext(requestContext);
-        FingerMarkCredential credential = (FingerMarkCredential)
+        return (AbstractPasswordCredential)
             requestContext.getFlowScope().get("fingerMarkCredential");
-        if(credential != null) {
-            requestContext.getFlowScope().put("credential", credential);
-            return true;
-        }
-        return false;
     }
 
 }

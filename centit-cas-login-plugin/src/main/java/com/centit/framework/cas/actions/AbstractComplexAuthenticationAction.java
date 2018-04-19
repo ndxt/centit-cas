@@ -68,7 +68,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
         this.supportAuthType = supportAuthType;
     }
 
-    public abstract boolean doPrepareExecute(final RequestContext requestContext);
+    public abstract ComplexAuthCredential doPrepareExecute(final RequestContext requestContext);
 
     protected Event makeError(final RequestContext requestContext, String sourceCode, String msg) {
         final MessageContext messageContext = requestContext.getMessageContext();
@@ -85,28 +85,29 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
             new LocalAttributeMap<>(CasWebflowConstants.TRANSITION_ID_ERROR, error));
     }
 
-
     @Override
     protected Event doExecute(final RequestContext requestContext) {
-        if(!doPrepareExecute(requestContext)){
+        ComplexAuthCredential credential = doPrepareExecute(requestContext);
+        if(credential==null){
             return makeError(requestContext,"credentialError","请输入正确的验证信息！") ;
         }
 
-        ComplexAuthCredential credential = (ComplexAuthCredential) WebUtils.getCredential(requestContext);
-
+        HttpServletRequest request = WebUtils.getHttpServletRequestFromExternalWebflowContext(requestContext);
+        HttpSession httpSession = request.getSession();
+        httpSession.setAttribute("_currentAuthType", credential.getAuthType());
         if(StringUtils.isNotBlank(credential.getAuthType())
              && ! StringUtils.equals(this.supportAuthType, credential.getAuthType())
              /*&& StringUtils.equalsAny( credential.getAuthType(),
                 "password","usbKey", "fingerMark","ldap" )*/ ) {
                 return new Event(this, "changeAuth");
         }
-
-        HttpServletRequest request = WebUtils.getHttpServletRequestFromExternalWebflowContext(requestContext);
-        HttpSession httpSession = request.getSession();
-        httpSession.setAttribute("_currentAuthType", credential.getAuthType());
+        String inputCheckRes = credential.checkInput();
+        if(StringUtils.isNotBlank(inputCheckRes)){
+            return makeError(requestContext,"inputError",inputCheckRes);
+        }
+        requestContext.getFlowScope().put("credential", credential);
         //check validateCod
         if(credential instanceof AbstractPasswordCredential ) {
-
             //校验码
             String captchaCode = StringBaseOpt.castObjectToString(
                 httpSession.getAttribute(CaptchaImageUtil.SESSIONCHECKCODE));
@@ -116,10 +117,9 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
                     !CaptchaImageUtil.checkcodeMatch(captchaCode,
                         ((AbstractPasswordCredential)credential).getValidateCode())) {
 
-                return makeError(requestContext,"captchaError","验证码输入错误！") ;
+                return makeError(requestContext,"captchaError","验证码输入错误！");
             }
         }
-
 
         final String agent = WebUtils.getHttpServletRequestUserAgentFromRequestContext();
         final GeoLocationRequest geoLocation = WebUtils.getHttpServletRequestGeoLocationFromRequestContext();
@@ -149,9 +149,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
         }
         fireEventHooks(finalEvent, requestContext);
         return finalEvent;
-
     }
-
 
     private void fireEventHooks(final Event e, final RequestContext ctx) {
         switch(e.getId()){

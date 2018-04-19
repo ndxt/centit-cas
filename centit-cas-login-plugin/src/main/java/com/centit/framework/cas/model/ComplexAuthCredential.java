@@ -28,4 +28,12 @@ public abstract class ComplexAuthCredential implements Credential, Serializable 
     public void setMacAddr(String macAddr) {
         this.macAddr = macAddr;
     }
+
+    /**
+     * 检查输入是否符合要求
+     * @return 返回验证结果，null 为没有错误
+     */
+    public String checkInput(){
+        return null;
+    }
 }
