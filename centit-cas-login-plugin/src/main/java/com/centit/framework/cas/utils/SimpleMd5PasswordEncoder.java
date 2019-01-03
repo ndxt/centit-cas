@@ -1,9 +1,8 @@
 package com.centit.framework.cas.utils;
 
 import com.centit.support.security.Md5Encoder;
-import org.apache.commons.codec.binary.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 /**
  * org.springframework.security.crypto.password
  */

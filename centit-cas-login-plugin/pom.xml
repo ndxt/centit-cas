@@ -86,8 +86,6 @@
             <artifactId>spring-security-ldap</artifactId>
             <version>RELEASE</version>
         </dependency>
-
-
         <!-- server runtime library -->
         <dependency>
             <groupId>com.sun</groupId>

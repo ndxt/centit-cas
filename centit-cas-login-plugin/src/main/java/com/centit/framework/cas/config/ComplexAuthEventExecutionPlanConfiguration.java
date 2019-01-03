@@ -2,7 +2,7 @@ package com.centit.framework.cas.config;
 
 import com.centit.framework.cas.handler.LdapAuthenticationHandler;
 import com.centit.framework.cas.handler.Md5PasswordAuthenticationHandler;
-import com.centit.framework.cas.utils.CentitPasswordEncoder;
+import com.centit.framework.cas.utils.StandardPasswordEncoder;
 import org.apereo.cas.authentication.AuthenticationEventExecutionPlan;
 import org.apereo.cas.authentication.AuthenticationEventExecutionPlanConfigurer;
 import org.apereo.cas.authentication.AuthenticationHandler;
@@ -40,7 +40,7 @@ public class ComplexAuthEventExecutionPlanConfiguration implements Authenticatio
         Md5PasswordAuthenticationHandler authenticationHandler =
             new Md5PasswordAuthenticationHandler("md5PasswordAuthenticationHandler",
                 servicesManager, new DefaultPrincipalFactory(), 1);
-        authenticationHandler.setPasswordEncoder(new CentitPasswordEncoder());
+        authenticationHandler.setPasswordEncoder(new StandardPasswordEncoder());
         authenticationHandler.setQueryUserProperties(complexProperties.getQueryUser());
         return authenticationHandler;
     }
