@@ -31,7 +31,6 @@ public class ComplexAuthEventExecutionPlanConfiguration implements Authenticatio
 
     /**
      * 注册验证器
-     *
      * @return
      */
     @Bean
