@@ -104,6 +104,13 @@
             <artifactId>spring-security-ldap</artifactId>
             <version>RELEASE</version>
         </dependency>
+
+        <!--<dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>2.23.2</version>
+        </dependency>-->
+
         <!-- server runtime library -->
         <dependency>
             <groupId>com.sun</groupId>

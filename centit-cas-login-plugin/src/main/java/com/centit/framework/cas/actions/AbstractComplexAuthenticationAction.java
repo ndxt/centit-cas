@@ -59,10 +59,6 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
         this.adaptiveAuthenticationPolicy = adaptiveAuthenticationPolicy;
     }
 
-
-
-
-
     public void setSupportAuthType(String supportAuthType) {
         this.supportAuthType = supportAuthType;
     }
