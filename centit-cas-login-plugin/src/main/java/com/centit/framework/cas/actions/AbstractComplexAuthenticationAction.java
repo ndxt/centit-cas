@@ -10,7 +10,6 @@ import com.centit.support.algorithm.StringBaseOpt;
 import com.centit.support.image.CaptchaImageUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apereo.cas.authentication.Authentication;
-import org.apereo.cas.authentication.AuthenticationCredentialsLocalBinder;
 import org.apereo.cas.authentication.AuthenticationException;
 import org.apereo.cas.authentication.adaptive.AdaptiveAuthenticationPolicy;
 import org.apereo.cas.authentication.adaptive.UnauthorizedAuthenticationException;
@@ -76,7 +75,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
         messageContext.addMessage(new MessageBuilder().error().code(
             CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE).source(sourceCode).defaultText(msg).build());
         //return getEventFactorySupport().event(this, CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE);
-        final Map<String, Class<? extends Throwable>> map = CollectionUtils.wrap(
+        final Map<String, Throwable> map = CollectionUtils.wrap(
             AuthenticationException.class.getSimpleName(),
             AuthenticationException.class);
         final AuthenticationException error = new AuthenticationException(msg, map, new HashMap<>(0));
@@ -126,7 +125,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
 
         if (!adaptiveAuthenticationPolicy.apply(agent, geoLocation)) {
             final String msg = "Adaptive authentication policy does not allow this request for " + agent + " and " + geoLocation;
-            final Map<String, Class<? extends Throwable>> map = CollectionUtils.wrap(
+            final Map<String,Throwable> map = CollectionUtils.wrap(
                     UnauthorizedAuthenticationException.class.getSimpleName(),
                     UnauthorizedAuthenticationException.class);
             final AuthenticationException error = new AuthenticationException(msg, map, new HashMap<>(0));
@@ -142,7 +141,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
 
         Event finalEvent = this.initialAuthenticationAttemptWebflowEventResolver.resolveSingle(requestContext);
         if(finalEvent.getId().equals(CasWebflowConstants.TRANSITION_ID_SUCCESS )) {
-            Authentication auth = AuthenticationCredentialsLocalBinder.getCurrentAuthentication();
+            Authentication auth =  WebUtils.getAuthentication(requestContext);// AuthenticationCredentialsLocalBinder.getCurrentAuthentication();
             if (auditPolicy != null && !auditPolicy.apply(credential,auth, requestContext)) {
                 finalEvent = makeError(requestContext, "autidNotPass", "IP地址和Mac地址审核不通过!");
             }
@@ -184,7 +183,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
      */
     protected void onSuccess(final RequestContext context) {
         ComplexAuthCredential credential = (ComplexAuthCredential) WebUtils.getCredential(context);
-        Authentication auth = AuthenticationCredentialsLocalBinder.getCurrentAuthentication();
+        Authentication auth = WebUtils.getAuthentication(context);// AuthenticationCredentialsLocalBinder.getCurrentAuthentication();
         loginLogger.logSuccess(credential, ClientInfoHolder.getClientInfo(), auth );
     }
     /**

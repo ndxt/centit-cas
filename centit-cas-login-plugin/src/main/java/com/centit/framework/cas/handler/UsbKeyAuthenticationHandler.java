@@ -7,8 +7,8 @@ package com.centit.framework.cas.handler;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.centit.framework.cas.model.UsbKeyCredential;
+import org.apereo.cas.authentication.AuthenticationHandlerExecutionResult;
 import org.apereo.cas.authentication.Credential;
-import org.apereo.cas.authentication.HandlerResult;
 import org.apereo.cas.authentication.PreventedException;
 import org.apereo.cas.authentication.handler.support.AbstractPreAndPostProcessingAuthenticationHandler;
 import org.apereo.cas.authentication.principal.PrincipalFactory;
@@ -30,7 +30,7 @@ public class UsbKeyAuthenticationHandler extends AbstractPreAndPostProcessingAut
     }
 
     @Override
-    protected HandlerResult doAuthentication(Credential credential) throws GeneralSecurityException, PreventedException {
+    protected AuthenticationHandlerExecutionResult doAuthentication(Credential credential) throws GeneralSecurityException, PreventedException {
         UsbKeyCredential usbKeyCredential = (UsbKeyCredential) credential;
         return createHandlerResult(credential,
             this.principalFactory.createPrincipal( usbKeyCredential.getId(),
