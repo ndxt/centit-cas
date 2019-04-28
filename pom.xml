@@ -22,9 +22,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.ldap.version>2.2.0.RELEASE</spring.ldap.version>
-		<cas.version>5.3.10</cas.version>
+		<cas.version>6.0.3</cas.version>
+		<jdk.version>1.8</jdk.version>
 	</properties>
-
 
 	<url>https://github.com/ndxt/centit-cas</url>
 
@@ -67,8 +67,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.6.1</version>
 				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
+					<!--<source>${jdk.version}</source>
+					<target>${jdk.version}</target>-->
 					<encoding>UTF-8</encoding>
 					<compilerArguments>
 						<verbose />
