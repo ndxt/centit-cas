@@ -189,7 +189,7 @@ public class ComplexWebflowConfigurer extends AbstractCasWebflowConfigurer {
                 createEvaluateAction(CasWebflowConstants.ACTION_ID_REDIRECT_TO_SERVICE));
         createTransitionForState(redirectToView, Response.ResponseType.POST.name().toLowerCase(), CasWebflowConstants.STATE_ID_POST_VIEW);
         createTransitionForState(redirectToView, Response.ResponseType.HEADER.name().toLowerCase(), CasWebflowConstants.STATE_ID_HEADER_VIEW);
-        createTransitionForState(redirectToView, Response.ResponseType.REDIRECT.name().toLowerCase(), CasWebflowConstants.STATE_ID_REDIRECT_VIEW);
+        createTransitionForState(redirectToView, Response.ResponseType.REDIRECT.name().toLowerCase(), CasWebflowConstants.STATE_ID_REDIR_VIEW);
     }
 
     /**
@@ -246,7 +246,7 @@ public class ComplexWebflowConfigurer extends AbstractCasWebflowConfigurer {
      * @param flow the flow
      */
     protected void createRedirectEndState(final Flow flow) {
-        createEndState(flow, CasWebflowConstants.STATE_ID_REDIRECT_VIEW, "requestScope.url", true);
+        createEndState(flow, CasWebflowConstants.STATE_ID_REDIR_VIEW, "requestScope.url", true);
     }
 
     /**

@@ -71,7 +71,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
         messageContext.addMessage(new MessageBuilder().error().code(
             CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE).source(sourceCode).defaultText(msg).build());
         //return getEventFactorySupport().event(this, CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE);
-        final Map<String, Throwable> map = CollectionUtils.wrap(
+        final Map<String, Class<? extends Throwable>> map = CollectionUtils.wrap(
             AuthenticationException.class.getSimpleName(),
             AuthenticationException.class);
         final AuthenticationException error = new AuthenticationException(msg, map, new HashMap<>(0));
@@ -122,7 +122,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
 
         if (!adaptiveAuthenticationPolicy.apply(agent, geoLocation)) {
             final String msg = "Adaptive authentication policy does not allow this request for " + agent + " and " + geoLocation;
-            final Map<String,Throwable> map = CollectionUtils.wrap(
+            final Map<String,Class<? extends Throwable>> map = CollectionUtils.wrap(
                     UnauthorizedAuthenticationException.class.getSimpleName(),
                     UnauthorizedAuthenticationException.class);
             final AuthenticationException error = new AuthenticationException(msg, map, new HashMap<>(0));

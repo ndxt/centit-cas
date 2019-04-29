@@ -6,8 +6,8 @@ import com.centit.framework.cas.model.LdapCredential;
 import com.centit.support.algorithm.StringBaseOpt;
 import com.centit.support.compiler.Pretreatment;
 import org.apache.commons.lang3.StringUtils;
-import org.apereo.cas.authentication.AuthenticationHandlerExecutionResult;
 import org.apereo.cas.authentication.Credential;
+import org.apereo.cas.authentication.HandlerResult;
 import org.apereo.cas.authentication.PreventedException;
 import org.apereo.cas.authentication.handler.support.AbstractPreAndPostProcessingAuthenticationHandler;
 import org.apereo.cas.authentication.principal.Principal;
@@ -141,7 +141,7 @@ public class LdapAuthenticationHandler extends AbstractPreAndPostProcessingAuthe
     */
 
     @Override
-    protected AuthenticationHandlerExecutionResult doAuthentication(Credential credential) throws GeneralSecurityException, PreventedException {
+    protected HandlerResult doAuthentication(Credential credential) throws GeneralSecurityException, PreventedException {
         LdapCredential adCredential = (LdapCredential) credential;
         Principal principal = searchPrincipalByCredential(credential);
         if(principal==null){
@@ -159,7 +159,7 @@ public class LdapAuthenticationHandler extends AbstractPreAndPostProcessingAuthe
             throw new FailedLoginException(e.getLocalizedMessage());
         }
 
-        return createHandlerResult(credential,principal);
+        return createHandlerResult(credential,principal,null);
     }
 
 

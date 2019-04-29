@@ -36,7 +36,8 @@ public class ComplexAuthEventExecutionPlanConfiguration
     @Qualifier("acceptUsersPrincipalFactory")
     private PrincipalFactory acceptUsersPrincipalFactory;
     /**
-     * @return 注册验证器
+     * 注册验证器
+     * @return
      */
     @Bean
     public AuthenticationHandler md5PasswordAuthenticationHandler() {

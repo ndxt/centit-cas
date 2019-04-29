@@ -42,10 +42,10 @@ public class JdbcLoginLogger implements LoginLogger{
     }
 
     private void writeLogBySql(String sql, Map<String, Object> params){
-        if(StringUtils.isBlank(sql)){
+        /*if(StringUtils.isBlank(sql)){
             logger.info("没有配置相关的日志写入sql语句！");
             return;
-        }
+        }*/
         try {
             TransactionHandler.executeInTransaction(
                 jdbcLoggerConfig.getDatasource(),

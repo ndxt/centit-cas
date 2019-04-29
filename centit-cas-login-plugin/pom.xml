@@ -5,7 +5,7 @@
     <parent>
         <artifactId>centit-cas</artifactId>
         <groupId>com.centit.framework</groupId>
-        <version>1.2-SNAPSHOT</version>
+        <version>1.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -47,31 +47,13 @@
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
-            <artifactId>cas-server-core-authentication-api</artifactId>
-            <version>${cas.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-web</artifactId>
             <version>${cas.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
-            <artifactId>cas-server-core-web-api</artifactId>
-            <version>${cas.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-webflow</artifactId>
-            <version>${cas.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apereo.cas</groupId>
-            <artifactId>cas-server-core-webflow-api</artifactId>
             <version>${cas.version}</version>
         </dependency>
 
@@ -106,13 +88,13 @@
         </dependency>-->
 
         <!-- server runtime library -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.sun</groupId>
             <artifactId>tools</artifactId>
             <version>${jdk.version}</version>
             <systemPath>${env.JAVA_HOME}/lib/tools.jar</systemPath>
             <scope>system</scope>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>javax.servlet</groupId>
