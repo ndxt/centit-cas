@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.centit.framework</groupId>
 	<artifactId>centit-cas</artifactId>
-	<version>1.2-SNAPSHOT</version>
+	<version>1.3-SNAPSHOT</version>
     <modules>
         <module>centit-cas-login-plugin</module>
         <module>centit-cas-demo</module>
@@ -21,7 +21,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jdk.version>1.8</jdk.version>
+		<jdk.version>11</jdk.version>
 		<spring.ldap.version>2.2.0.RELEASE</spring.ldap.version>
 		<cas.version>6.0.3</cas.version>
 		<centit.commons.version>2.2.1901</centit.commons.version>

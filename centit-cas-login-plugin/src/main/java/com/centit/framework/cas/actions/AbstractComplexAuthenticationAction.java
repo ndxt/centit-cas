@@ -120,7 +120,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
         final String agent = WebUtils.getHttpServletRequestUserAgentFromRequestContext();
         final GeoLocationRequest geoLocation = WebUtils.getHttpServletRequestGeoLocationFromRequestContext();
 
-        if (!adaptiveAuthenticationPolicy.apply(agent, geoLocation)) {
+        if (!adaptiveAuthenticationPolicy.apply(requestContext, agent, geoLocation)) {
             final String msg = "Adaptive authentication policy does not allow this request for " + agent + " and " + geoLocation;
             final Map<String,Throwable> map = CollectionUtils.wrap(
                     UnauthorizedAuthenticationException.class.getSimpleName(),
