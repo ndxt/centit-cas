@@ -2,7 +2,6 @@ package com.centit.framework.cas.config;
 
 import com.centit.framework.cas.handler.LdapAuthenticationHandler;
 import com.centit.framework.cas.handler.Md5PasswordAuthenticationHandler;
-import com.centit.framework.cas.resolver.CentitPrincipalResolver;
 import com.centit.framework.cas.utils.StandardPasswordEncoder;
 import org.apereo.cas.authentication.AuthenticationEventExecutionPlan;
 import org.apereo.cas.authentication.AuthenticationEventExecutionPlanConfigurer;
@@ -59,8 +58,8 @@ public class ComplexAuthEventExecutionPlanConfiguration implements Authenticatio
     //注册自定义认证器
     @Override
     public void configureAuthenticationExecutionPlan(final AuthenticationEventExecutionPlan plan) {
-        CentitPrincipalResolver resolver = new CentitPrincipalResolver();
-        plan.registerAuthenticationHandlerWithPrincipalResolver(md5PasswordAuthenticationHandler(), resolver);
-        plan.registerAuthenticationHandlerWithPrincipalResolver(ldapAuthenticationHandler(), resolver);
+        //CentitPrincipalResolver resolver = new CentitPrincipalResolver();
+        plan.registerAuthenticationHandler(md5PasswordAuthenticationHandler());
+        plan.registerAuthenticationHandler(ldapAuthenticationHandler());
     }
 }
