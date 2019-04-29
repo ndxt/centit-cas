@@ -1,7 +1,6 @@
 package com.centit.framework.cas.actions;
 
 import com.centit.framework.cas.model.AbstractPasswordCredential;
-import com.centit.framework.cas.model.Md5PasswordCredential;
 import org.apereo.cas.CentralAuthenticationService;
 import org.apereo.cas.authentication.adaptive.AdaptiveAuthenticationPolicy;
 import org.apereo.cas.web.flow.resolver.CasDelegatingWebflowEventResolver;
