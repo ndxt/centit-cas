@@ -86,6 +86,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
 
     @Override
     protected Event doExecute(final RequestContext requestContext) {
+
         ComplexAuthCredential credential = doPrepareExecute(requestContext);
         if(credential==null){
             return makeError(requestContext,"credentialError","请输入正确的验证信息！") ;
