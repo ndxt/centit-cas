@@ -4,9 +4,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>framework-release-dependencies</artifactId>
-		<groupId>com.centit.framework</groupId>
-		<version>1.2.1901</version>
+		<groupId>org.apereo.cas</groupId>
+		<artifactId>cas-server-support-bom</artifactId>
+		<version>5.3.10</version>
 	</parent>
 	<groupId>com.centit.framework</groupId>
 	<artifactId>centit-cas</artifactId>
@@ -59,18 +59,6 @@
 		<url>https://github.com/ndxt/centit-cas</url>
 		<tag>v1.12</tag>
 	</scm>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.apereo.cas</groupId>
-				<artifactId>cas-server-support-bom</artifactId>
-				<version>${cas.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<build>
 		<plugins>
