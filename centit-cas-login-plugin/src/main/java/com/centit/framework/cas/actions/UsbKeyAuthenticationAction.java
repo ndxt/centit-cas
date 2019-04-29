@@ -1,7 +1,6 @@
 package com.centit.framework.cas.actions;
 
 import com.centit.framework.cas.model.AbstractPasswordCredential;
-import org.apereo.cas.CentralAuthenticationService;
 import org.apereo.cas.authentication.adaptive.AdaptiveAuthenticationPolicy;
 import org.apereo.cas.web.flow.resolver.CasDelegatingWebflowEventResolver;
 import org.apereo.cas.web.flow.resolver.CasWebflowEventResolver;
@@ -20,9 +19,8 @@ public class UsbKeyAuthenticationAction extends AbstractComplexAuthenticationAct
 
     public UsbKeyAuthenticationAction(final CasDelegatingWebflowEventResolver delegatingWebflowEventResolver,
                                       final CasWebflowEventResolver webflowEventResolver,
-                                      final AdaptiveAuthenticationPolicy adaptiveAuthenticationPolicy,
-                                      final CentralAuthenticationService centralAuthenticationService) {
-        super(delegatingWebflowEventResolver, webflowEventResolver, adaptiveAuthenticationPolicy,centralAuthenticationService);
+                                      final AdaptiveAuthenticationPolicy adaptiveAuthenticationPolicy) {
+        super(delegatingWebflowEventResolver, webflowEventResolver, adaptiveAuthenticationPolicy);
         super.setSupportAuthType("usbKey");
     }
 

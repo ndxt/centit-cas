@@ -9,7 +9,6 @@ import com.centit.support.algorithm.NumberBaseOpt;
 import com.centit.support.algorithm.StringBaseOpt;
 import com.centit.support.image.CaptchaImageUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.apereo.cas.CentralAuthenticationService;
 import org.apereo.cas.authentication.Authentication;
 import org.apereo.cas.authentication.AuthenticationException;
 import org.apereo.cas.authentication.adaptive.AdaptiveAuthenticationPolicy;
@@ -51,16 +50,13 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
     private final CasDelegatingWebflowEventResolver initialAuthenticationAttemptWebflowEventResolver;
     private final AdaptiveAuthenticationPolicy adaptiveAuthenticationPolicy;
     private final CasWebflowEventResolver serviceTicketRequestWebflowEventResolver;
-    private final CentralAuthenticationService centralAuthenticationService;
 
     public AbstractComplexAuthenticationAction(final CasDelegatingWebflowEventResolver delegatingWebflowEventResolver,
                                         final CasWebflowEventResolver webflowEventResolver,
-                                        final AdaptiveAuthenticationPolicy adaptiveAuthenticationPolicy,
-                                        final CentralAuthenticationService centralAuthenticationService) {
+                                        final AdaptiveAuthenticationPolicy adaptiveAuthenticationPolicy) {
         this.initialAuthenticationAttemptWebflowEventResolver = delegatingWebflowEventResolver;
         this.serviceTicketRequestWebflowEventResolver = webflowEventResolver;
         this.adaptiveAuthenticationPolicy = adaptiveAuthenticationPolicy;
-        this.centralAuthenticationService = centralAuthenticationService;
     }
 
     public void setSupportAuthType(String supportAuthType) {
