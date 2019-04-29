@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.centit.framework.cas.config.JdbcLoggerProperties;
 import com.centit.framework.cas.model.ComplexAuthCredential;
 import com.centit.support.algorithm.DatetimeOpt;
+import com.centit.support.algorithm.UuidOpt;
 import com.centit.support.database.utils.DatabaseAccess;
 import com.centit.support.database.utils.TransactionHandler;
 import org.apache.commons.lang3.StringUtils;
@@ -28,6 +29,7 @@ public class JdbcLoginLogger implements LoginLogger{
 
     private Map<String, Object> makeParams(ComplexAuthCredential credential, ClientInfo clientInfo){
         Map<String, Object> params = new HashMap<>(20);
+        params.put("logId", UuidOpt.getUuidAsString22());
         params.put("username", credential.getId());
         params.put("loginTime", DatetimeOpt.currentUtilDate());
         params.put("loginIp", clientInfo==null?"":clientInfo.getClientIpAddress());
@@ -40,6 +42,10 @@ public class JdbcLoginLogger implements LoginLogger{
     }
 
     private void writeLogBySql(String sql, Map<String, Object> params){
+        /*if(StringUtils.isBlank(sql)){
+            logger.info("没有配置相关的日志写入sql语句！");
+            return;
+        }*/
         try {
             TransactionHandler.executeInTransaction(
                 jdbcLoggerConfig.getDatasource(),
@@ -56,7 +62,7 @@ public class JdbcLoginLogger implements LoginLogger{
         if(StringUtils.isNotBlank(jdbcLoggerConfig.getSuccessSql())){
             Map<String, Object> params = makeParams(credential, clientInfo);
             if(auth!=null) {
-                params.put("principle", auth.getPrincipal());
+                params.put("principle", auth.getPrincipal().getId());
                 params.put("auth", JSON.toJSONString(auth.getAttributes()));
             }
             writeLogBySql(jdbcLoggerConfig.getSuccessSql(),params);
