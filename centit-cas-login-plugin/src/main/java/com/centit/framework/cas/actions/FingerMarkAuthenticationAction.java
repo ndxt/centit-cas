@@ -18,9 +18,8 @@ public class FingerMarkAuthenticationAction extends AbstractComplexAuthenticatio
 
     public FingerMarkAuthenticationAction(final CasDelegatingWebflowEventResolver delegatingWebflowEventResolver,
                                           final CasWebflowEventResolver webflowEventResolver,
-                                          final AdaptiveAuthenticationPolicy adaptiveAuthenticationPolicy,
-                                          final CentralAuthenticationService centralAuthenticationService) {
-        super(delegatingWebflowEventResolver, webflowEventResolver, adaptiveAuthenticationPolicy,centralAuthenticationService);
+                                          final AdaptiveAuthenticationPolicy adaptiveAuthenticationPolicy) {
+        super(delegatingWebflowEventResolver, webflowEventResolver, adaptiveAuthenticationPolicy);
         super.setSupportAuthType("fingerMark");
     }
 

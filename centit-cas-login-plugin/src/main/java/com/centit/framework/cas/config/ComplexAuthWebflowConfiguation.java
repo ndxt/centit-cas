@@ -6,7 +6,6 @@ import com.centit.framework.cas.audit.IpMacAuditPolicy;
 import com.centit.framework.cas.audit.JdbcLoginLogger;
 import com.centit.framework.cas.audit.LoginLogger;
 import com.centit.framework.cas.controller.CaptchaController;
-import org.apereo.cas.CentralAuthenticationService;
 import org.apereo.cas.authentication.adaptive.AdaptiveAuthenticationPolicy;
 import org.apereo.cas.pm.config.PasswordManagementConfiguration;
 import org.apereo.cas.web.flow.resolver.CasDelegatingWebflowEventResolver;
@@ -40,9 +39,10 @@ public class ComplexAuthWebflowConfiguation {
     @Qualifier("adaptiveAuthenticationPolicy")
     private AdaptiveAuthenticationPolicy adaptiveAuthenticationPolicy;
 
-    @Autowired
+    /*@Autowired
     @Qualifier("centralAuthenticationService")
     private CentralAuthenticationService centralAuthenticationService;
+    */
 
     @Bean
     @ConditionalOnMissingBean(name = "captchaController")
@@ -68,8 +68,7 @@ public class ComplexAuthWebflowConfiguation {
                                                   @Autowired LoginLogger loginLogger) {
         Md5PasswordAuthenticationAction action =  new Md5PasswordAuthenticationAction(initialAuthenticationAttemptWebflowEventResolver,
                 serviceTicketRequestWebflowEventResolver,
-                adaptiveAuthenticationPolicy,
-                centralAuthenticationService);
+                adaptiveAuthenticationPolicy);
         action.setAuditPolicy(auditPolicy);
         action.setLoginLogger(loginLogger);
         action.setStrategyConfig(complexProperties.getStrategy());
@@ -82,8 +81,7 @@ public class ComplexAuthWebflowConfiguation {
                                                       @Autowired LoginLogger loginLogger) {
         LdapAuthenticationAction action =  new LdapAuthenticationAction(initialAuthenticationAttemptWebflowEventResolver,
                 serviceTicketRequestWebflowEventResolver,
-                adaptiveAuthenticationPolicy,
-                centralAuthenticationService);
+                adaptiveAuthenticationPolicy);
         action.setAuditPolicy(auditPolicy);
         action.setLoginLogger(loginLogger);
         action.setStrategyConfig(complexProperties.getStrategy());
@@ -96,8 +94,7 @@ public class ComplexAuthWebflowConfiguation {
                                                  @Autowired LoginLogger loginLogger) {
         FingerMarkAuthenticationAction action =  new FingerMarkAuthenticationAction(initialAuthenticationAttemptWebflowEventResolver,
                 serviceTicketRequestWebflowEventResolver,
-                adaptiveAuthenticationPolicy,
-                centralAuthenticationService);
+                adaptiveAuthenticationPolicy);
         action.setAuditPolicy(auditPolicy);
         action.setLoginLogger(loginLogger);
         action.setStrategyConfig(complexProperties.getStrategy());
@@ -110,8 +107,7 @@ public class ComplexAuthWebflowConfiguation {
                                              @Autowired LoginLogger loginLogger) {
         UsbKeyAuthenticationAction action =  new UsbKeyAuthenticationAction(initialAuthenticationAttemptWebflowEventResolver,
                 serviceTicketRequestWebflowEventResolver,
-                adaptiveAuthenticationPolicy,
-                centralAuthenticationService);
+                adaptiveAuthenticationPolicy);
         action.setAuditPolicy(auditPolicy);
         action.setLoginLogger(loginLogger);
         action.setStrategyConfig(complexProperties.getStrategy());

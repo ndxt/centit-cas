@@ -9,7 +9,6 @@ import com.centit.support.algorithm.NumberBaseOpt;
 import com.centit.support.algorithm.StringBaseOpt;
 import com.centit.support.image.CaptchaImageUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.apereo.cas.CentralAuthenticationService;
 import org.apereo.cas.authentication.Authentication;
 import org.apereo.cas.authentication.AuthenticationException;
 import org.apereo.cas.authentication.adaptive.AdaptiveAuthenticationPolicy;
@@ -51,16 +50,13 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
     private final CasDelegatingWebflowEventResolver initialAuthenticationAttemptWebflowEventResolver;
     private final AdaptiveAuthenticationPolicy adaptiveAuthenticationPolicy;
     private final CasWebflowEventResolver serviceTicketRequestWebflowEventResolver;
-    private final CentralAuthenticationService centralAuthenticationService;
 
     public AbstractComplexAuthenticationAction(final CasDelegatingWebflowEventResolver delegatingWebflowEventResolver,
                                         final CasWebflowEventResolver webflowEventResolver,
-                                        final AdaptiveAuthenticationPolicy adaptiveAuthenticationPolicy,
-                                        final CentralAuthenticationService centralAuthenticationService) {
+                                        final AdaptiveAuthenticationPolicy adaptiveAuthenticationPolicy) {
         this.initialAuthenticationAttemptWebflowEventResolver = delegatingWebflowEventResolver;
         this.serviceTicketRequestWebflowEventResolver = webflowEventResolver;
         this.adaptiveAuthenticationPolicy = adaptiveAuthenticationPolicy;
-        this.centralAuthenticationService = centralAuthenticationService;
     }
 
     public void setSupportAuthType(String supportAuthType) {
@@ -75,7 +71,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
         messageContext.addMessage(new MessageBuilder().error().code(
             CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE).source(sourceCode).defaultText(msg).build());
         //return getEventFactorySupport().event(this, CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE);
-        final Map<String, Throwable> map = CollectionUtils.wrap(
+        final Map<String, Class<? extends Throwable>> map = CollectionUtils.wrap(
             AuthenticationException.class.getSimpleName(),
             AuthenticationException.class);
         final AuthenticationException error = new AuthenticationException(msg, map, new HashMap<>(0));
@@ -126,7 +122,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
 
         if (!adaptiveAuthenticationPolicy.apply(agent, geoLocation)) {
             final String msg = "Adaptive authentication policy does not allow this request for " + agent + " and " + geoLocation;
-            final Map<String,Throwable> map = CollectionUtils.wrap(
+            final Map<String,Class<? extends Throwable>> map = CollectionUtils.wrap(
                     UnauthorizedAuthenticationException.class.getSimpleName(),
                     UnauthorizedAuthenticationException.class);
             final AuthenticationException error = new AuthenticationException(msg, map, new HashMap<>(0));
