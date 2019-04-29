@@ -39,11 +39,6 @@ public class ComplexAuthWebflowConfiguation {
     @Qualifier("adaptiveAuthenticationPolicy")
     private AdaptiveAuthenticationPolicy adaptiveAuthenticationPolicy;
 
-    /*@Autowired
-    @Qualifier("centralAuthenticationService")
-    private CentralAuthenticationService centralAuthenticationService;
-    */
-
     @Bean
     @ConditionalOnMissingBean(name = "captchaController")
     public CaptchaController captchaController() {
@@ -66,7 +61,8 @@ public class ComplexAuthWebflowConfiguation {
     @Bean
     public Action md5PasswordAuthenticationAction(@Autowired AuditPolicy auditPolicy,
                                                   @Autowired LoginLogger loginLogger) {
-        Md5PasswordAuthenticationAction action =  new Md5PasswordAuthenticationAction(initialAuthenticationAttemptWebflowEventResolver,
+        Md5PasswordAuthenticationAction action =
+                new Md5PasswordAuthenticationAction(initialAuthenticationAttemptWebflowEventResolver,
                 serviceTicketRequestWebflowEventResolver,
                 adaptiveAuthenticationPolicy);
         action.setAuditPolicy(auditPolicy);
@@ -79,7 +75,8 @@ public class ComplexAuthWebflowConfiguation {
     @Bean
     public Action ldapAuthenticationAction(@Autowired AuditPolicy auditPolicy,
                                                       @Autowired LoginLogger loginLogger) {
-        LdapAuthenticationAction action =  new LdapAuthenticationAction(initialAuthenticationAttemptWebflowEventResolver,
+        LdapAuthenticationAction action =
+                new LdapAuthenticationAction(initialAuthenticationAttemptWebflowEventResolver,
                 serviceTicketRequestWebflowEventResolver,
                 adaptiveAuthenticationPolicy);
         action.setAuditPolicy(auditPolicy);
@@ -92,7 +89,8 @@ public class ComplexAuthWebflowConfiguation {
     @Bean
     public Action fingerMarkAuthenticationAction(@Autowired AuditPolicy auditPolicy,
                                                  @Autowired LoginLogger loginLogger) {
-        FingerMarkAuthenticationAction action =  new FingerMarkAuthenticationAction(initialAuthenticationAttemptWebflowEventResolver,
+        FingerMarkAuthenticationAction action =
+                new FingerMarkAuthenticationAction(initialAuthenticationAttemptWebflowEventResolver,
                 serviceTicketRequestWebflowEventResolver,
                 adaptiveAuthenticationPolicy);
         action.setAuditPolicy(auditPolicy);
@@ -105,7 +103,8 @@ public class ComplexAuthWebflowConfiguation {
     @Bean
     public Action usbKeyAuthenticationAction(@Autowired AuditPolicy auditPolicy,
                                              @Autowired LoginLogger loginLogger) {
-        UsbKeyAuthenticationAction action =  new UsbKeyAuthenticationAction(initialAuthenticationAttemptWebflowEventResolver,
+        UsbKeyAuthenticationAction action =
+                new UsbKeyAuthenticationAction(initialAuthenticationAttemptWebflowEventResolver,
                 serviceTicketRequestWebflowEventResolver,
                 adaptiveAuthenticationPolicy);
         action.setAuditPolicy(auditPolicy);

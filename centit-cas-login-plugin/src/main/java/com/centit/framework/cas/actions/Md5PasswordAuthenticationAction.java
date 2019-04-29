@@ -4,6 +4,7 @@ import com.centit.framework.cas.model.AbstractPasswordCredential;
 import org.apereo.cas.authentication.adaptive.AdaptiveAuthenticationPolicy;
 import org.apereo.cas.web.flow.resolver.CasDelegatingWebflowEventResolver;
 import org.apereo.cas.web.flow.resolver.CasWebflowEventResolver;
+import org.apereo.cas.web.support.WebUtils;
 import org.springframework.webflow.execution.RequestContext;
 
 /**
@@ -26,8 +27,10 @@ public class Md5PasswordAuthenticationAction extends AbstractComplexAuthenticati
     @Override
     public AbstractPasswordCredential doPrepareExecute(RequestContext requestContext) {
         //HttpServletRequest request = WebUtils.getHttpServletRequestFromExternalWebflowContext(requestContext);
-        return (AbstractPasswordCredential)
+        AbstractPasswordCredential credential = (AbstractPasswordCredential)
             requestContext.getFlowScope().get("md5PwdCredential");
+        WebUtils.putCredential(requestContext, credential);
+        return credential;
     }
 
 }

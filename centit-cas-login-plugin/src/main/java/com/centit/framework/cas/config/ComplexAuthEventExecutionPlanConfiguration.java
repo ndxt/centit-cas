@@ -6,7 +6,7 @@ import com.centit.framework.cas.utils.StandardPasswordEncoder;
 import org.apereo.cas.authentication.AuthenticationEventExecutionPlan;
 import org.apereo.cas.authentication.AuthenticationEventExecutionPlanConfigurer;
 import org.apereo.cas.authentication.AuthenticationHandler;
-import org.apereo.cas.authentication.principal.DefaultPrincipalFactory;
+import org.apereo.cas.authentication.principal.PrincipalFactory;
 import org.apereo.cas.services.ServicesManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,6 +32,9 @@ public class ComplexAuthEventExecutionPlanConfiguration
     @Qualifier("servicesManager")
     private ServicesManager servicesManager;
 
+    @Autowired
+    @Qualifier("acceptUsersPrincipalFactory")
+    private PrincipalFactory acceptUsersPrincipalFactory;
     /**
      * 注册验证器
      * @return
@@ -41,7 +44,7 @@ public class ComplexAuthEventExecutionPlanConfiguration
         //优先验证
         Md5PasswordAuthenticationHandler authenticationHandler =
             new Md5PasswordAuthenticationHandler("md5PasswordAuthenticationHandler",
-                servicesManager, new DefaultPrincipalFactory(), 1);
+                servicesManager, acceptUsersPrincipalFactory, 1);
         authenticationHandler.setPasswordEncoder(new StandardPasswordEncoder());
         authenticationHandler.setQueryUserProperties(complexProperties.getQueryUser());
         return authenticationHandler;
@@ -52,7 +55,7 @@ public class ComplexAuthEventExecutionPlanConfiguration
         //优先验证
         LdapAuthenticationHandler authenticationHandler =
                 new LdapAuthenticationHandler("ldapAuthenticationHandler",
-                        servicesManager, new DefaultPrincipalFactory(), 1);
+                        servicesManager, acceptUsersPrincipalFactory, 1);
         authenticationHandler.setLdapProperties(complexProperties.getLdap());
         return authenticationHandler;
     }
@@ -65,28 +68,4 @@ public class ComplexAuthEventExecutionPlanConfiguration
         plan.registerAuthenticationHandler(ldapAuthenticationHandler());
     }
 
-   /* @Autowired
-    private CasConfigurationProperties casProperties;
-
-    @Autowired
-    @Qualifier("loginFlowRegistry")
-    private FlowDefinitionRegistry loginFlowDefinitionRegistry;
-
-    @Autowired
-    private ApplicationContext applicationContext;
-
-    @Autowired
-    private FlowBuilderServices flowBuilderServices;
-
-    @ConditionalOnMissingBean(name = "complexWebflowConfigurer")
-    @Bean
-    public CasWebflowConfigurer complexWebflowConfigurer() {
-        return new DefaultLoginWebflowConfigurer(flowBuilderServices,
-                loginFlowDefinitionRegistry, applicationContext, casProperties);
-    }
-
-    @Override
-    public void configureWebflowExecutionPlan(final CasWebflowExecutionPlan plan) {
-        plan.registerWebflowConfigurer(complexWebflowConfigurer());
-    }*/
 }

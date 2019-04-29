@@ -39,5 +39,4 @@ public class FingerMarkAuthenticationHandler extends AbstractPreAndPostProcessin
         return credential instanceof FingerMarkCredential;
     }
 
-
 }

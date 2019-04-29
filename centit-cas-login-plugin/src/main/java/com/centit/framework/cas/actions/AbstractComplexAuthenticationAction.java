@@ -159,7 +159,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
                 onSuccess(ctx);
                 break;
             default:
-                onFailedLogin(ctx);
+                //onFailedLogin(ctx);
                 break;
         }
     }
