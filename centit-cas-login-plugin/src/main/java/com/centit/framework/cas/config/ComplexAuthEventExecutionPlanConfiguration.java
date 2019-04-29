@@ -33,7 +33,8 @@ public class ComplexAuthEventExecutionPlanConfiguration
     private ServicesManager servicesManager;
 
     /**
-     * @return 注册验证器
+     * 注册验证器
+     * @return
      */
     @Bean
     public AuthenticationHandler md5PasswordAuthenticationHandler() {

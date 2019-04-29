@@ -14,7 +14,6 @@
     <packaging>war</packaging>
     <name>com.centit.framework:centit-cas-demo</name>
     <description>单点登录平台，集成cas-server-webapp，只添加和系统中的用户对接部分代码</description>
-
     <dependencies>
         <dependency>
             <groupId>com.centit.framework</groupId>
