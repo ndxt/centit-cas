@@ -11,8 +11,8 @@ import com.centit.support.algorithm.BooleanBaseOpt;
 import com.centit.support.database.utils.DatabaseAccess;
 import com.centit.support.database.utils.DbcpConnectPools;
 import org.apache.commons.lang3.StringUtils;
+import org.apereo.cas.authentication.AuthenticationHandlerExecutionResult;
 import org.apereo.cas.authentication.Credential;
-import org.apereo.cas.authentication.HandlerResult;
 import org.apereo.cas.authentication.PreventedException;
 import org.apereo.cas.authentication.exceptions.AccountDisabledException;
 import org.apereo.cas.authentication.exceptions.AccountPasswordMustChangeException;
@@ -46,7 +46,7 @@ public class Md5PasswordAuthenticationHandler extends AbstractPreAndPostProcessi
     }
 
     @Override
-    protected HandlerResult doAuthentication(Credential credential) throws GeneralSecurityException, PreventedException {
+    protected AuthenticationHandlerExecutionResult doAuthentication(Credential credential) throws GeneralSecurityException, PreventedException {
         //当用户名为admin,并且system为sso即允许通过
         Md5PasswordCredential passwordCredential = (Md5PasswordCredential) credential;
         if (StringUtils.isBlank(passwordCredential.getUsername())) {
@@ -94,7 +94,7 @@ public class Md5PasswordAuthenticationHandler extends AbstractPreAndPostProcessi
                 }
             }
             user.remove(DatabaseAccess.mapColumnNameToField(queryUserProperties.getPinField() ));
-            return createHandlerResult(credential, this.principalFactory.createPrincipal( principal, user), null);
+            return createHandlerResult(credential, this.principalFactory.createPrincipal( principal, user));
 
         }catch (SQLException | IOException e) {
             throw new AccountNotFoundException("查找用户 "+passwordCredential.getUsername()+" 报错 "+ e.getLocalizedMessage());

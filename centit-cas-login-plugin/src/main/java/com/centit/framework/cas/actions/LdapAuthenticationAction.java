@@ -2,6 +2,7 @@ package com.centit.framework.cas.actions;
 
 import com.centit.framework.cas.model.AbstractPasswordCredential;
 import com.centit.framework.cas.model.LdapCredential;
+import org.apereo.cas.CentralAuthenticationService;
 import org.apereo.cas.authentication.adaptive.AdaptiveAuthenticationPolicy;
 import org.apereo.cas.web.flow.resolver.CasDelegatingWebflowEventResolver;
 import org.apereo.cas.web.flow.resolver.CasWebflowEventResolver;
@@ -19,8 +20,9 @@ public class LdapAuthenticationAction extends AbstractComplexAuthenticationActio
 
     public LdapAuthenticationAction(final CasDelegatingWebflowEventResolver delegatingWebflowEventResolver,
                                     final CasWebflowEventResolver webflowEventResolver,
-                                    final AdaptiveAuthenticationPolicy adaptiveAuthenticationPolicy) {
-        super(delegatingWebflowEventResolver, webflowEventResolver, adaptiveAuthenticationPolicy);
+                                    final AdaptiveAuthenticationPolicy adaptiveAuthenticationPolicy,
+                                    final CentralAuthenticationService centralAuthenticationService) {
+        super(delegatingWebflowEventResolver, webflowEventResolver, adaptiveAuthenticationPolicy,centralAuthenticationService);
         super.setSupportAuthType("ldap");
     }
 

@@ -8,7 +8,6 @@ import java.io.Serializable;
 public class JdbcLoggerProperties implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     private String successSql;
     private String errorSql;
     private String warnSql;

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 /**
  * 南大先腾 技术管理中心
  * @author codefan@sina.comc
@@ -20,7 +21,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration("complexAuthEventExecutionPlanConfiguration")
 @EnableConfigurationProperties(ComplexConfigurationProperties.class)
-public class ComplexAuthEventExecutionPlanConfiguration implements AuthenticationEventExecutionPlanConfigurer {
+public class ComplexAuthEventExecutionPlanConfiguration
+        implements AuthenticationEventExecutionPlanConfigurer
+        /*,CasWebflowExecutionPlanConfigurer */{
 
     @Autowired
     private ComplexConfigurationProperties complexProperties;
@@ -57,7 +60,33 @@ public class ComplexAuthEventExecutionPlanConfiguration implements Authenticatio
     //注册自定义认证器
     @Override
     public void configureAuthenticationExecutionPlan(final AuthenticationEventExecutionPlan plan) {
+        //CentitPrincipalResolver resolver = new CentitPrincipalResolver();
         plan.registerAuthenticationHandler(md5PasswordAuthenticationHandler());
         plan.registerAuthenticationHandler(ldapAuthenticationHandler());
     }
+
+   /* @Autowired
+    private CasConfigurationProperties casProperties;
+
+    @Autowired
+    @Qualifier("loginFlowRegistry")
+    private FlowDefinitionRegistry loginFlowDefinitionRegistry;
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    @Autowired
+    private FlowBuilderServices flowBuilderServices;
+
+    @ConditionalOnMissingBean(name = "complexWebflowConfigurer")
+    @Bean
+    public CasWebflowConfigurer complexWebflowConfigurer() {
+        return new DefaultLoginWebflowConfigurer(flowBuilderServices,
+                loginFlowDefinitionRegistry, applicationContext, casProperties);
+    }
+
+    @Override
+    public void configureWebflowExecutionPlan(final CasWebflowExecutionPlan plan) {
+        plan.registerWebflowConfigurer(complexWebflowConfigurer());
+    }*/
 }

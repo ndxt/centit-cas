@@ -5,7 +5,7 @@
     <parent>
         <artifactId>centit-cas</artifactId>
         <groupId>com.centit.framework</groupId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.2-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -13,14 +13,6 @@
     <packaging>jar</packaging>
     <name>com.centit.framework:centit-cas-login-plugin</name>
     <description>单点登录平台登录插件，左右数据库登录优化 和 通用的ldap登录（修复CAS自导AD登录缺陷）</description>
-
-    <properties>
-        <!-- app.server could be -jetty,
-           -undertow, -tomcat, or blank if you plan to provide appserver -->
-        <app.server></app.server>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -55,13 +47,31 @@
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-core-authentication-api</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-web</artifactId>
             <version>${cas.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-core-web-api</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-webflow</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-core-webflow-api</artifactId>
             <version>${cas.version}</version>
         </dependency>
 
@@ -88,6 +98,13 @@
             <artifactId>spring-security-ldap</artifactId>
             <version>RELEASE</version>
         </dependency>
+
+        <!--<dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>2.23.2</version>
+        </dependency>-->
+
         <!-- server runtime library -->
         <dependency>
             <groupId>com.sun</groupId>
@@ -103,6 +120,7 @@
             <version>${servlet-api.version}</version>
             <scope>provided</scope>
         </dependency>
+
     </dependencies>
 
 </project>

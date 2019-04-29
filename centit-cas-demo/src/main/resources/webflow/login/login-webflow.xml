@@ -23,7 +23,7 @@
         <transition on="invalid" to="terminateSession"/>
         <transition on="valid" to="hasServiceCheck"/>
     </action-state>
-        
+
     <action-state id="initializeLoginForm">
         <evaluate expression="initializeLoginAction" />
         <transition on="success" to="changeAuth"/>
