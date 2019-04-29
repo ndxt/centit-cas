@@ -7,6 +7,7 @@
 *.iml
 # Log file
 *.log
+*/overlays
 
 # BlueJ files
 *.ctxt
