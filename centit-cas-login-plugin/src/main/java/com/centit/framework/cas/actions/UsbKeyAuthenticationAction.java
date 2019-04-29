@@ -5,6 +5,7 @@ import org.apereo.cas.CentralAuthenticationService;
 import org.apereo.cas.authentication.adaptive.AdaptiveAuthenticationPolicy;
 import org.apereo.cas.web.flow.resolver.CasDelegatingWebflowEventResolver;
 import org.apereo.cas.web.flow.resolver.CasWebflowEventResolver;
+import org.apereo.cas.web.support.WebUtils;
 import org.springframework.webflow.execution.RequestContext;
 
 /**
@@ -28,8 +29,10 @@ public class UsbKeyAuthenticationAction extends AbstractComplexAuthenticationAct
     @Override
     public AbstractPasswordCredential doPrepareExecute(RequestContext requestContext) {
         //HttpServletRequest request =WebUtils.getHttpServletRequestFromExternalWebflowContext(requestContext);
-        return (AbstractPasswordCredential)
+        AbstractPasswordCredential credential = (AbstractPasswordCredential)
             requestContext.getFlowScope().get("usbKeyCredential");
+        WebUtils.putCredential(requestContext, credential);
+        return credential;
     }
 
 }

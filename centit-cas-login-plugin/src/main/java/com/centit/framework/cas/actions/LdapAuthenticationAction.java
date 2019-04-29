@@ -1,11 +1,11 @@
 package com.centit.framework.cas.actions;
 
 import com.centit.framework.cas.model.AbstractPasswordCredential;
-import com.centit.framework.cas.model.LdapCredential;
 import org.apereo.cas.CentralAuthenticationService;
 import org.apereo.cas.authentication.adaptive.AdaptiveAuthenticationPolicy;
 import org.apereo.cas.web.flow.resolver.CasDelegatingWebflowEventResolver;
 import org.apereo.cas.web.flow.resolver.CasWebflowEventResolver;
+import org.apereo.cas.web.support.WebUtils;
 import org.springframework.webflow.execution.RequestContext;
 
 /**
@@ -29,8 +29,10 @@ public class LdapAuthenticationAction extends AbstractComplexAuthenticationActio
     @Override
     public AbstractPasswordCredential doPrepareExecute(RequestContext requestContext) {
         //HttpServletRequest request =WebUtils.getHttpServletRequestFromExternalWebflowContext(requestContext);
-        return (LdapCredential)
+        AbstractPasswordCredential credential = (AbstractPasswordCredential)
             requestContext.getFlowScope().get("ldapCredential");
+        WebUtils.putCredential(requestContext, credential);
+        return credential;
     }
 
 }
