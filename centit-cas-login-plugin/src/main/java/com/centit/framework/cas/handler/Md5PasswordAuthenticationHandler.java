@@ -94,7 +94,7 @@ public class Md5PasswordAuthenticationHandler extends AbstractPreAndPostProcessi
                 }
             }
             user.remove(DatabaseAccess.mapColumnNameToField(queryUserProperties.getPinField() ));
-            return createHandlerResult(credential, this.principalFactory.createPrincipal( principal, user), null);
+            return createHandlerResult(credential, this.principalFactory.createPrincipal( principal, user));
 
         }catch (SQLException | IOException e) {
             throw new AccountNotFoundException("查找用户 "+passwordCredential.getUsername()+" 报错 "+ e.getLocalizedMessage());

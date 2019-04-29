@@ -34,7 +34,7 @@ public class FingerMarkAuthenticationHandler extends AbstractPreAndPostProcessin
         FingerMarkCredential fingerMarkCredential = (FingerMarkCredential) credential;
         return createHandlerResult(credential,
             this.principalFactory.createPrincipal( fingerMarkCredential.getId(),
-                (JSONObject) JSON.toJSON(fingerMarkCredential)), null);
+                (JSONObject) JSON.toJSON(fingerMarkCredential)));
     }
 
 

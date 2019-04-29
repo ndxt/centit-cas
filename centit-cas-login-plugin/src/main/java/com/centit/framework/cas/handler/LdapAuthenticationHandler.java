@@ -163,7 +163,7 @@ public class LdapAuthenticationHandler extends AbstractPreAndPostProcessingAuthe
             throw new FailedLoginException(e.getLocalizedMessage());
         }
 
-        return createHandlerResult(credential,principal, null);
+        return createHandlerResult(credential,principal);
     }
 
 

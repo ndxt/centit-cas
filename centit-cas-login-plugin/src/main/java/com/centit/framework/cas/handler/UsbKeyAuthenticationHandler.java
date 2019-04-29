@@ -34,7 +34,7 @@ public class UsbKeyAuthenticationHandler extends AbstractPreAndPostProcessingAut
         UsbKeyCredential usbKeyCredential = (UsbKeyCredential) credential;
         return createHandlerResult(credential,
             this.principalFactory.createPrincipal( usbKeyCredential.getId(),
-                (JSONObject) JSON.toJSON(usbKeyCredential)), null);
+                (JSONObject) JSON.toJSON(usbKeyCredential)));
     }
 
 
