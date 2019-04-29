@@ -59,10 +59,6 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
         this.adaptiveAuthenticationPolicy = adaptiveAuthenticationPolicy;
     }
 
-
-
-
-
     public void setSupportAuthType(String supportAuthType) {
         this.supportAuthType = supportAuthType;
     }
@@ -86,6 +82,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
 
     @Override
     protected Event doExecute(final RequestContext requestContext) {
+
         ComplexAuthCredential credential = doPrepareExecute(requestContext);
         if(credential==null){
             return makeError(requestContext,"credentialError","请输入正确的验证信息！") ;
@@ -162,7 +159,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
                 onSuccess(ctx);
                 break;
             default:
-                onFailedLogin(ctx);
+                //onFailedLogin(ctx);
                 break;
         }
     }
@@ -184,6 +181,10 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
     protected void onSuccess(final RequestContext context) {
         ComplexAuthCredential credential = (ComplexAuthCredential) WebUtils.getCredential(context);
         Authentication auth = WebUtils.getAuthentication(context);// AuthenticationCredentialsLocalBinder.getCurrentAuthentication();
+        /*WebUtils.putTicketGrantingTicketInScopes(context,
+                this.centralAuthenticationService.createTicketGrantingTicket(
+                        WebUtils.getAuthenticationResult(context)));*/
+        //WebUtils.putAuthenticationResult();
         loginLogger.logSuccess(credential, ClientInfoHolder.getClientInfo(), auth );
     }
     /**

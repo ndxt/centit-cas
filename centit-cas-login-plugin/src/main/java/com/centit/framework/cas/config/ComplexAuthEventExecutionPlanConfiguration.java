@@ -6,13 +6,14 @@ import com.centit.framework.cas.utils.StandardPasswordEncoder;
 import org.apereo.cas.authentication.AuthenticationEventExecutionPlan;
 import org.apereo.cas.authentication.AuthenticationEventExecutionPlanConfigurer;
 import org.apereo.cas.authentication.AuthenticationHandler;
-import org.apereo.cas.authentication.principal.DefaultPrincipalFactory;
+import org.apereo.cas.authentication.principal.PrincipalFactory;
 import org.apereo.cas.services.ServicesManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 /**
  * 南大先腾 技术管理中心
  * @author codefan@sina.comc
@@ -20,7 +21,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration("complexAuthEventExecutionPlanConfiguration")
 @EnableConfigurationProperties(ComplexConfigurationProperties.class)
-public class ComplexAuthEventExecutionPlanConfiguration implements AuthenticationEventExecutionPlanConfigurer {
+public class ComplexAuthEventExecutionPlanConfiguration
+        implements AuthenticationEventExecutionPlanConfigurer
+        /*,CasWebflowExecutionPlanConfigurer */{
 
     @Autowired
     private ComplexConfigurationProperties complexProperties;
@@ -29,17 +32,18 @@ public class ComplexAuthEventExecutionPlanConfiguration implements Authenticatio
     @Qualifier("servicesManager")
     private ServicesManager servicesManager;
 
+    @Autowired
+    @Qualifier("acceptUsersPrincipalFactory")
+    private PrincipalFactory acceptUsersPrincipalFactory;
     /**
-     * 注册验证器
-     *
-     * @return
+     * @return 注册验证器
      */
     @Bean
     public AuthenticationHandler md5PasswordAuthenticationHandler() {
         //优先验证
         Md5PasswordAuthenticationHandler authenticationHandler =
             new Md5PasswordAuthenticationHandler("md5PasswordAuthenticationHandler",
-                servicesManager, new DefaultPrincipalFactory(), 1);
+                servicesManager, acceptUsersPrincipalFactory, 1);
         authenticationHandler.setPasswordEncoder(new StandardPasswordEncoder());
         authenticationHandler.setQueryUserProperties(complexProperties.getQueryUser());
         return authenticationHandler;
@@ -50,7 +54,7 @@ public class ComplexAuthEventExecutionPlanConfiguration implements Authenticatio
         //优先验证
         LdapAuthenticationHandler authenticationHandler =
                 new LdapAuthenticationHandler("ldapAuthenticationHandler",
-                        servicesManager, new DefaultPrincipalFactory(), 1);
+                        servicesManager, acceptUsersPrincipalFactory, 1);
         authenticationHandler.setLdapProperties(complexProperties.getLdap());
         return authenticationHandler;
     }
@@ -58,7 +62,9 @@ public class ComplexAuthEventExecutionPlanConfiguration implements Authenticatio
     //注册自定义认证器
     @Override
     public void configureAuthenticationExecutionPlan(final AuthenticationEventExecutionPlan plan) {
+        //CentitPrincipalResolver resolver = new CentitPrincipalResolver();
         plan.registerAuthenticationHandler(md5PasswordAuthenticationHandler());
         plan.registerAuthenticationHandler(ldapAuthenticationHandler());
     }
+
 }

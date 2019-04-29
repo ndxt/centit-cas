@@ -17,13 +17,13 @@
         <transition on="successWithWarnings" to="ticketGrantingTicketCheck"/>
     </action-state>
 
-    <action-state id="ticketGrantingTicketCheck">
+    <!--<action-state id="ticketGrantingTicketCheck">
         <evaluate expression="ticketGrantingTicketCheckAction"/>
         <transition on="notExists" to="gatewayRequestCheck"/>
         <transition on="invalid" to="terminateSession"/>
         <transition on="valid" to="hasServiceCheck"/>
-    </action-state>
-        
+    </action-state>-->
+
     <action-state id="initializeLoginForm">
         <evaluate expression="initializeLoginAction" />
         <transition on="success" to="changeAuth"/>
@@ -70,7 +70,7 @@
         <evaluate expression="md5PasswordAuthenticationAction"/>
         <transition on="changeAuth" to="changeAuth"/>
         <transition on="warn" to="warn"/>
-        <transition on="success" to="sendTicketGrantingTicket"/>
+        <transition on="success" to="createTicketGrantingTicket"/>
         <transition on="successWithWarnings" to="showAuthenticationWarningMessages"/>
         <transition on="authenticationFailure" to="handleAuthenticationFailure"/>
         <transition on="error" to="passwordLoginForm"/>
@@ -80,7 +80,7 @@
         <evaluate expression="ldapAuthenticationAction"/>
         <transition on="changeAuth" to="changeAuth"/>
         <transition on="warn" to="warn"/>
-        <transition on="success" to="sendTicketGrantingTicket"/>
+        <transition on="success" to="createTicketGrantingTicket"/>
         <transition on="successWithWarnings" to="showAuthenticationWarningMessages"/>
         <transition on="authenticationFailure" to="handleAuthenticationFailure"/>
         <transition on="error" to="ldapLoginForm"/>
@@ -90,7 +90,7 @@
         <evaluate expression="usbKeyAuthenticationAction"/>
         <transition on="changeAuth" to="changeAuth"/>
         <transition on="warn" to="warn"/>
-        <transition on="success" to="sendTicketGrantingTicket"/>
+        <transition on="success" to="createTicketGrantingTicket"/>
         <transition on="successWithWarnings" to="showAuthenticationWarningMessages"/>
         <transition on="authenticationFailure" to="handleAuthenticationFailure"/>
         <transition on="error" to="usbKeyLoginForm"/>
@@ -100,7 +100,7 @@
         <evaluate expression="fingerMarkAuthenticationAction"/>
         <transition on="changeAuth" to="changeAuth"/>
         <transition on="warn" to="warn"/>
-        <transition on="success" to="sendTicketGrantingTicket"/>
+        <transition on="success" to="createTicketGrantingTicket"/>
         <transition on="successWithWarnings" to="showAuthenticationWarningMessages"/>
         <transition on="authenticationFailure" to="handleAuthenticationFailure"/>
         <transition on="error" to="fingerMarkLoginForm"/>

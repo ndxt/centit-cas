@@ -1,7 +1,3 @@
-/*
- * 版权所有.(c)2008-2017. 卡尔科技工作室
- */
-
 package com.centit.framework.cas.handler;
 
 import com.alibaba.fastjson.JSON;
@@ -34,7 +30,7 @@ public class FingerMarkAuthenticationHandler extends AbstractPreAndPostProcessin
         FingerMarkCredential fingerMarkCredential = (FingerMarkCredential) credential;
         return createHandlerResult(credential,
             this.principalFactory.createPrincipal( fingerMarkCredential.getId(),
-                (JSONObject) JSON.toJSON(fingerMarkCredential)), null);
+                (JSONObject) JSON.toJSON(fingerMarkCredential)));
     }
 
 
@@ -42,6 +38,5 @@ public class FingerMarkAuthenticationHandler extends AbstractPreAndPostProcessin
     public boolean supports(Credential credential) {
         return credential instanceof FingerMarkCredential;
     }
-
 
 }

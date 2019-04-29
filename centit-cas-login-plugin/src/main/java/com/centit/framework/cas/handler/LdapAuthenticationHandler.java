@@ -1,7 +1,3 @@
-/*
- * 版权所有.(c)2008-2017. 卡尔科技工作室
- */
-
 package com.centit.framework.cas.handler;
 
 import com.centit.framework.cas.audit.JdbcLoginLogger;
@@ -163,7 +159,7 @@ public class LdapAuthenticationHandler extends AbstractPreAndPostProcessingAuthe
             throw new FailedLoginException(e.getLocalizedMessage());
         }
 
-        return createHandlerResult(credential,principal, null);
+        return createHandlerResult(credential,principal);
     }
 
 
