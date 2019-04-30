@@ -30,61 +30,51 @@
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-util</artifactId>
-            <version>${cas.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-configuration</artifactId>
-            <version>${cas.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-authentication</artifactId>
-            <version>${cas.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-authentication-api</artifactId>
-            <version>${cas.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-web</artifactId>
-            <version>${cas.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-web-api</artifactId>
-            <version>${cas.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-webflow</artifactId>
-            <version>${cas.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-webflow-api</artifactId>
-            <version>${cas.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-support-pm</artifactId>
-            <version>${cas.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-support-actions</artifactId>
-            <version>${cas.version}</version>
         </dependency>
 
         <dependency>
