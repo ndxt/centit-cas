@@ -29,8 +29,7 @@
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-webapp</artifactId>
-            <type>war</type>
-            <scope>runtime</scope>
+             <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -74,17 +73,17 @@
                     <warName>cas</warName>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <recompressZippedFiles>false</recompressZippedFiles>
-                    <archive>
+                    <!--<archive>
                         <compress>false</compress>
                         <manifestFile>${project.build.directory}/war/work/org.apereo.cas/cas-server-webapp/META-INF/MANIFEST.MF
                         </manifestFile>
-                    </archive>
-                    <overlays>
+                    </archive>-->
+                    <!--<overlays>
                         <overlay>
                             <groupId>org.apereo.cas</groupId>
                             <artifactId>cas-server-webapp</artifactId>
                         </overlay>
-                    </overlays>
+                    </overlays>-->
                 </configuration>
             </plugin>
         </plugins>

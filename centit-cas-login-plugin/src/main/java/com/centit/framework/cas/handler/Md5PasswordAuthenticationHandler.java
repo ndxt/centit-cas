@@ -3,6 +3,7 @@ package com.centit.framework.cas.handler;
 import com.alibaba.fastjson.JSONObject;
 import com.centit.framework.cas.config.QueryUserProperties;
 import com.centit.framework.cas.model.Md5PasswordCredential;
+import com.centit.framework.cas.utils.PrincipalUtils;
 import com.centit.support.algorithm.BooleanBaseOpt;
 import com.centit.support.database.utils.DatabaseAccess;
 import com.centit.support.database.utils.DbcpConnectPools;
@@ -90,7 +91,9 @@ public class Md5PasswordAuthenticationHandler extends AbstractPreAndPostProcessi
                 }
             }
             user.remove(DatabaseAccess.mapColumnNameToField(queryUserProperties.getPinField() ));
-            return createHandlerResult(credential, this.principalFactory.createPrincipal( principal, user));
+            return createHandlerResult(credential,
+                    this.principalFactory.createPrincipal( principal,
+                            PrincipalUtils.makePrinciupalAttributes(user)));
 
         }catch (SQLException | IOException e) {
             throw new AccountNotFoundException("查找用户 "+passwordCredential.getUsername()+" 报错 "+ e.getLocalizedMessage());

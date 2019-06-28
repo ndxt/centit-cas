@@ -3,6 +3,7 @@ package com.centit.framework.cas.handler;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.centit.framework.cas.model.FingerMarkCredential;
+import com.centit.framework.cas.utils.PrincipalUtils;
 import org.apereo.cas.authentication.AuthenticationHandlerExecutionResult;
 import org.apereo.cas.authentication.Credential;
 import org.apereo.cas.authentication.PreventedException;
@@ -29,8 +30,9 @@ public class FingerMarkAuthenticationHandler extends AbstractPreAndPostProcessin
     protected AuthenticationHandlerExecutionResult doAuthentication(Credential credential) throws GeneralSecurityException, PreventedException {
         FingerMarkCredential fingerMarkCredential = (FingerMarkCredential) credential;
         return createHandlerResult(credential,
-            this.principalFactory.createPrincipal( fingerMarkCredential.getId(),
-                (JSONObject) JSON.toJSON(fingerMarkCredential)));
+            this.principalFactory.createPrincipal(fingerMarkCredential.getId(),
+                    PrincipalUtils.makePrinciupalAttributes(
+                            (JSONObject) JSON.toJSON(fingerMarkCredential))));
     }
 
 

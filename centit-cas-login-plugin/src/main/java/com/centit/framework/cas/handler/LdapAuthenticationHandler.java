@@ -3,6 +3,7 @@ package com.centit.framework.cas.handler;
 import com.centit.framework.cas.audit.JdbcLoginLogger;
 import com.centit.framework.cas.config.LdapProperties;
 import com.centit.framework.cas.model.LdapCredential;
+import com.centit.framework.cas.utils.PrincipalUtils;
 import com.centit.support.algorithm.StringBaseOpt;
 import com.centit.support.compiler.Pretreatment;
 import org.apache.commons.lang3.StringUtils;
@@ -115,7 +116,8 @@ public class LdapAuthenticationHandler extends AbstractPreAndPostProcessingAuthe
                             attributes.put(attr.getID(), attr.get());
                         }
                         ctx.close();
-                        return this.principalFactory.createPrincipal(principalId, attributes);
+                        return this.principalFactory.createPrincipal(principalId,
+                                PrincipalUtils.makePrinciupalAttributes(attributes));
                     }
                 }
             }

@@ -90,7 +90,9 @@ public class ComplexWebflowConfigurer extends AbstractCasWebflowConfigurer {
      * @param flow the flow
      */
     protected void createAuthenticationWarningMessagesView(final Flow flow) {
-        final ViewState state = createViewState(flow, CasWebflowConstants.VIEW_ID_SHOW_AUTHN_WARNING_MSGS, "casLoginMessageView");
+        final ViewState state = createViewState(flow,
+                CasWebflowConstants.STATE_ID_SHOW_AUTHN_WARNING_MSGS,
+                "casLoginMessageView");
 
         final SetAction setAction = new SetAction(createExpression("requestScope.messages"), createExpression("messageContext.allMessages"));
         state.getEntryActionList().add(setAction);
