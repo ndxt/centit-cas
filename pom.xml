@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.apereo.cas</groupId>
 		<artifactId>cas-server-support-bom</artifactId>
-		<version>5.3.10</version>
+		<version>5.3.11</version>
 	</parent>
 
 	<groupId>com.centit.framework</groupId>
@@ -23,8 +23,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.8</jdk.version>
-		<spring.ldap.version>2.2.0.RELEASE</spring.ldap.version>
-		<cas.version>5.3.10</cas.version>
+		<spring.version>4.3.20.RELEASE</spring.version>
+		<spring.ldap.version>2.3.2.RELEASE</spring.ldap.version>
+		<spring.security.version>4.2.8.RELEASE</spring.security.version>
 		<centit.commons.version>2.2-SNAPSHOT</centit.commons.version>
 		<ojdbc6.version>11.2.0.4</ojdbc6.version>
 		<mysql.version>5.1.9</mysql.version>
