@@ -80,13 +80,13 @@
         <dependency>
             <groupId>org.springframework.ldap</groupId>
             <artifactId>spring-ldap-core</artifactId>
-            <version>RELEASE</version>
+            <version>${spring.ldap.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-ldap</artifactId>
-            <version>RELEASE</version>
+            <version>${spring.security.version}</version>
         </dependency>
 
         <!--<dependency>

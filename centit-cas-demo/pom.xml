@@ -29,7 +29,7 @@
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-webapp</artifactId>
-             <scope>runtime</scope>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>

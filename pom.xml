@@ -14,17 +14,23 @@
     <modules>
         <module>centit-cas-login-plugin</module>
         <module>centit-cas-demo</module>
+		<module>centit-cas-boot-demo</module>
     </modules>
     <packaging>pom</packaging>
 	<name>com.centit.framework:centit-cas</name>
 	<description>单点登录平台，集成cas-server-webapp，只添加和系统中的用户对接部分代码</description>
 
 	<properties>
+		<java.version>11</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!--<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>-->
 		<!--<jdk.version>11</jdk.version>-->
-		<spring.ldap.version>2.2.0.RELEASE</spring.ldap.version>
+		<!--<cas.version>6.1.0-RC4</cas.version>-->
+		<spring.boot.version>2.2.0.M3</spring.boot.version>
+		<spring.version>5.1.8.RELEASE</spring.version>
+		<spring.ldap.version>2.3.2.RELEASE</spring.ldap.version>
+		<spring.security.version>5.1.5.RELEASE</spring.security.version>
 		<centit.commons.version>2.2-SNAPSHOT</centit.commons.version>
 		<ojdbc6.version>11.2.0.4</ojdbc6.version>
 		<mysql.version>5.1.9</mysql.version>
@@ -158,19 +164,19 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
-			<!-- <plugin>
-                 <groupId>org.apache.maven.plugins</groupId>
-                 <artifactId>maven-javadoc-plugin</artifactId>
-                 <version>2.10.4</version>
-                 <executions>
-                     <execution>
-                         <id>attach-javadocs</id>
-                         <goals>
-                             <goal>jar</goal>
-                         </goals>
-                     </execution>
-                 </executions>
-             </plugin>-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.4</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+            </plugin>
 
 			<!-- GPG自动签名的插件-->
 			<!--<plugin>
