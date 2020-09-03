@@ -155,6 +155,7 @@ public class LdapAuthenticationHandler extends AbstractPreAndPostProcessingAuthe
             if(!passed){
                 throw new FailedLoginException("用户名密码不匹配。");
             }
+            //TODO: 检测用户信息并同步用户信息
         } catch (NamingException e) {
             throw new FailedLoginException(e.getLocalizedMessage());
         }
