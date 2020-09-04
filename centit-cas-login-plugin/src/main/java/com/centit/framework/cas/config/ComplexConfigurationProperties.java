@@ -25,6 +25,9 @@ public class ComplexConfigurationProperties implements Serializable {
     @NestedConfigurationProperty
     private StrategyProperties strategy = new StrategyProperties();
 
+    @NestedConfigurationProperty
+    private SyncUserProperties syncUser = new SyncUserProperties();
+
     public LdapProperties getLdap() {
         return ldap;
     }
@@ -55,5 +58,13 @@ public class ComplexConfigurationProperties implements Serializable {
 
     public void setStrategy(StrategyProperties strategy) {
         this.strategy = strategy;
+    }
+
+    public SyncUserProperties getSyncUser() {
+        return syncUser;
+    }
+
+    public void setSyncUser(SyncUserProperties syncUser) {
+        this.syncUser = syncUser;
     }
 }

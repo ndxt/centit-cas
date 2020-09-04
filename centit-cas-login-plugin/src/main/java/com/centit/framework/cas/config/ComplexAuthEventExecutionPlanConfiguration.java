@@ -57,6 +57,7 @@ public class ComplexAuthEventExecutionPlanConfiguration
                 new LdapAuthenticationHandler("ldapAuthenticationHandler",
                         servicesManager, acceptUsersPrincipalFactory, 1);
         authenticationHandler.setLdapProperties(complexProperties.getLdap());
+        authenticationHandler.setSyncUserProperties(complexProperties.getSyncUser());
         return authenticationHandler;
     }
 

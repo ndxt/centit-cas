@@ -2,6 +2,7 @@ package com.centit.framework.cas.handler;
 
 import com.centit.framework.cas.audit.JdbcLoginLogger;
 import com.centit.framework.cas.config.LdapProperties;
+import com.centit.framework.cas.config.SyncUserProperties;
 import com.centit.framework.cas.model.LdapCredential;
 import com.centit.support.algorithm.StringBaseOpt;
 import com.centit.support.compiler.Pretreatment;
@@ -43,6 +44,8 @@ public class LdapAuthenticationHandler extends AbstractPreAndPostProcessingAuthe
 
     private static Logger logger = LoggerFactory.getLogger(JdbcLoginLogger.class);
     private LdapProperties ldapProperties;
+
+    private SyncUserProperties syncUserProperties;
 
     public LdapAuthenticationHandler(String name, ServicesManager servicesManager, PrincipalFactory principalFactory, Integer order) {
         super(name, servicesManager, principalFactory, order);
@@ -155,6 +158,12 @@ public class LdapAuthenticationHandler extends AbstractPreAndPostProcessingAuthe
             if(!passed){
                 throw new FailedLoginException("用户名密码不匹配。");
             }
+            //检测用户信息并同步用户信息
+            if ("true".equals(syncUserProperties.getEnable())) {
+                SyncUserInfo syncUserInfo = new SyncUserInfo();
+                syncUserInfo.setSyncUserProperties(syncUserProperties);
+                syncUserInfo.syncUser(principal);
+            }
         } catch (NamingException e) {
             throw new FailedLoginException(e.getLocalizedMessage());
         }
@@ -172,4 +181,7 @@ public class LdapAuthenticationHandler extends AbstractPreAndPostProcessingAuthe
         this.ldapProperties = ldapProperties;
     }
 
+    public void setSyncUserProperties(SyncUserProperties syncUserProperties) {
+        this.syncUserProperties = syncUserProperties;
+    }
 }
