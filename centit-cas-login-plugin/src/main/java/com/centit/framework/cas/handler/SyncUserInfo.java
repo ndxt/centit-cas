@@ -103,7 +103,7 @@ public class SyncUserInfo {
         params.put("regemail", principal.get("mail"));
         //params.put("primaryunit", principal.get(""));
         params.put("userword", principal.get("jobNo"));
-        params.put("userorder", "");
+        params.put("userorder", 1000);
         params.put("updatedate", DatetimeOpt.currentUtilDate());
         params.put("createdate", DatetimeOpt.currentUtilDate());
         return params;
@@ -115,7 +115,7 @@ public class SyncUserInfo {
         params.put("isprimary", "F");
         params.put("userstation", "ZY");
         params.put("userrank", "YG");
-        params.put("userorder", 0);
+        params.put("userorder", 1000);
         params.put("updatedate", DatetimeOpt.currentUtilDate());
         params.put("createdate", DatetimeOpt.currentUtilDate());
         return params;
