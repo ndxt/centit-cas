@@ -5,7 +5,6 @@ import com.centit.framework.cas.config.SyncUserProperties;
 import com.centit.support.algorithm.DatetimeOpt;
 import com.centit.support.algorithm.UuidOpt;
 import com.centit.support.database.utils.DatabaseAccess;
-import com.centit.support.database.utils.DbcpConnectPools;
 import com.centit.support.database.utils.TransactionHandler;
 import org.apereo.cas.authentication.principal.Principal;
 import org.slf4j.Logger;
