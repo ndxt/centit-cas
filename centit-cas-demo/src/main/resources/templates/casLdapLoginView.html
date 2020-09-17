@@ -37,16 +37,17 @@
           <input type="password" class="form-control" name="password" placeholder="请输入您的密码">
         </div>
         <br>
-        <div class="input-group" style="position:absolute;" th:if="${session._needValidateCode}">
+        <div class="input-group" th:if="${session._needValidateCode}">
+          <span class="input-group-addon"><img width=24 height=20 src="css/yanzhengma.png"></span>
           <input type="text" name="validateCode" class="form-control" placeholder="请输入验证码"
-                 style="position:relative;width:191px;height:33px;">
+                 style="position:relative;width:171px;height:33px;">
           <img id="oimg">
         </div>
         <br>
       </fieldset>
       <input type="hidden" name="execution" th:value="${flowExecutionKey}"/>
       <input type="hidden" name="_eventId" value="submit"/>
-      <div style="margin-top:40px;">
+      <div style="margin-top:10px;">
         <input class="form-control btn btn-info" type="sumbit" value="登录" onclick="login()"/>
       </div>
   </form>

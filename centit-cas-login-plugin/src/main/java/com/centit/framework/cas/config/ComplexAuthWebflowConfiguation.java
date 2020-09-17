@@ -119,4 +119,11 @@ public class ComplexAuthWebflowConfiguation {
         changeAuthenticationAction.setStrategyConfig(complexProperties.getStrategy());
         return changeAuthenticationAction;
     }
+
+    @Bean
+    public Action authenticationFailureAction() {
+        AuthenticationFailureAction authenticationAction = new AuthenticationFailureAction();
+        authenticationAction.setStrategyConfig(complexProperties.getStrategy());
+        return authenticationAction;
+    }
 }

@@ -29,6 +29,11 @@
         <transition on="success" to="changeAuth"/>
     </action-state>
 
+    <action-state id="handleAuthenticationFailure">
+        <evaluate expression="authenticationFailureAction" />
+        <transition on="success" to="changeAuth"/>
+    </action-state>
+
     <view-state id="passwordLoginForm" view="casPasswordLoginView" model="md5PwdCredential">
         <binder>
             <binding property="authType" required="true"/>

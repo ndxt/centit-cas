@@ -187,6 +187,8 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
         //WebUtils.putAuthenticationResult();
         loginLogger.logSuccess(credential, ClientInfoHolder.getClientInfo(), auth );
     }
+
+
     /**
      * On error.
      *
@@ -195,36 +197,13 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
     protected void onError(final RequestContext context) {
         ComplexAuthCredential credential = (ComplexAuthCredential) WebUtils.getCredential(context);
         loginLogger.logError(credential, ClientInfoHolder.getClientInfo());
+        ActionUtils.incLoginTimes(context, this.strategyConfig.getMaxFailTimesBeforeValidateCode());
     }
 
     protected void onFailedLogin(final RequestContext context) {
         ComplexAuthCredential credential = (ComplexAuthCredential) WebUtils.getCredential(context);
         loginLogger.logFailedLogin(credential, ClientInfoHolder.getClientInfo());
-
-        HttpServletRequest request = WebUtils.getHttpServletRequestFromExternalWebflowContext(context);
-        /*StringBuilder errMessage = new StringBuilder();
-        for(Message message : context.getMessageContext().getAllMessages()){
-            if (message.getSeverity() == Severity.ERROR) {
-                errMessage.append(message.getText()).append("\t");
-            }
-        }
-        String errorMsg = errMessage.toString();
-        if(StringUtils.isBlank(errorMsg)){
-            errorMsg = "认证失败，经检测您的输入信息，并注意大小写！";
-        }*/
-        HttpSession httpSession = request.getSession();
-        //request.setAttribute("_loginErrorMessage",errorMsg);
-        int failTimes = NumberBaseOpt.castObjectToInteger(
-                httpSession.getAttribute("_failValidateTimes"),0);
-        failTimes ++;
-        if(failTimes>=this.strategyConfig.getMaxFailTimesBeforeValidateCode()) {
-            httpSession.setAttribute("_needValidateCode", true);
-            httpSession.setAttribute(CaptchaImageUtil.SESSIONCHECKCODE,"session_checkcode_need_change");
-        }else{
-            httpSession.setAttribute("_needValidateCode", false);
-        }
-        httpSession.setAttribute("_failValidateTimes",failTimes);
-
+        ActionUtils.incLoginTimes(context, this.strategyConfig.getMaxFailTimesBeforeValidateCode());
     }
 
     public void setAuditPolicy(AuditPolicy auditPolicy) {
