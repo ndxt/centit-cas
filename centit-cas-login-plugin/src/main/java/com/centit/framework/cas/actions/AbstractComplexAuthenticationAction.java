@@ -69,14 +69,14 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
         final MessageContext messageContext = requestContext.getMessageContext();
         //messageContext.hasErrorMessages()
         messageContext.addMessage(new MessageBuilder().error().code(
-            CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE).source(sourceCode).defaultText(msg).build());
-        //return getEventFactorySupport().event(this, CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE);
+            CasWebflowConstants.TRANSITION_ID_ERROR).source(sourceCode).defaultText(msg).build());
+        //return getEventFactorySupport().event(this, CasWebflowConstants.TRANSITION_ID_ERROR);
         final Map<String, Throwable> map = CollectionUtils.wrap(
             AuthenticationException.class.getSimpleName(),
             AuthenticationException.class);
         final AuthenticationException error = new AuthenticationException(msg, map, new HashMap<>(0));
         onFailedLogin(requestContext);
-        return new Event(this, CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,
+        return new Event(this, CasWebflowConstants.TRANSITION_ID_ERROR,
             new LocalAttributeMap<>(CasWebflowConstants.TRANSITION_ID_ERROR, error));
     }
 
@@ -126,7 +126,7 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
                     UnauthorizedAuthenticationException.class.getSimpleName(),
                     UnauthorizedAuthenticationException.class);
             final AuthenticationException error = new AuthenticationException(msg, map, new HashMap<>(0));
-            return new Event(this, CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,
+            return new Event(this, CasWebflowConstants.TRANSITION_ID_ERROR,
                     new LocalAttributeMap(CasWebflowConstants.TRANSITION_ID_ERROR, error));
         }
 
@@ -142,6 +142,20 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
             if (auditPolicy != null && !auditPolicy.apply(credential,auth, requestContext)) {
                 finalEvent = makeError(requestContext, "autidNotPass", "IP地址和Mac地址审核不通过!");
             }
+        } else if(finalEvent.getId().equals(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE )) {
+            AuthenticationException authenticationException =
+                    (AuthenticationException) finalEvent.getAttributes().get("error");
+            String errorMessage = "验证失败，可能是用户名密码出错！";
+            if(authenticationException != null){
+                Map<String, Throwable> errorMap = authenticationException.getHandlerErrors();
+                if(errorMap != null && errorMap.size()>0){
+                    Throwable throwable = errorMap.values().iterator().next();
+                    if(throwable != null){
+                        errorMessage = throwable.getMessage();
+                    }
+                }
+            }
+            return makeError(requestContext,"inputError",errorMessage);
         }
         fireEventHooks(finalEvent, requestContext);
         return finalEvent;
@@ -158,6 +172,9 @@ public abstract class AbstractComplexAuthenticationAction extends AbstractAction
             case CasWebflowConstants.TRANSITION_ID_SUCCESS:
                 onSuccess(ctx);
                 break;
+            /*case CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE:
+                onFailedLogin(ctx);
+                break;*/
             default:
                 //onFailedLogin(ctx);
                 break;

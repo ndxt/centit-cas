@@ -32,6 +32,7 @@
     <action-state id="handleAuthenticationFailure">
         <evaluate expression="authenticationFailureAction" />
         <transition on="success" to="changeAuth"/>
+        <transition on="error" to="changeAuth"/>
     </action-state>
 
     <view-state id="passwordLoginForm" view="casPasswordLoginView" model="md5PwdCredential">
