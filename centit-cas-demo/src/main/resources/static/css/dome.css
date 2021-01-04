@@ -1,6 +1,6 @@
 
 *{
-    margin:0px auto;	
+    margin:0px auto;
  }
 .box{
 	margin:100px auto 0;
@@ -13,31 +13,31 @@
 	width:380px;
 	height:400px;
 	background:#fff;
-	
+
 	margin-right:100px;
 	padding:40px 40px 40px 40px;
  }
- 
+
  #cnt_one{
-	 
+
 	color:#000;
-	font-size:20px; 
+	font-size:20px;
 	font-weight:600;
 	padding-right:120px;
-	
+
 }
 
  #cnt_two{
 	color:blue;
 	font-size:18px;
 	//padding-left:50px;
-	
+
  }
- 
+
  #huanying{
-	padding-bottom:10px; 
+	padding-bottom:10px;
  }
- 
+
  #oimg{
 	 padding-left:30px;
  }
@@ -54,3 +54,5 @@
 	color:blue;
 	padding-right:10px;
 }
+
+.input-group {position: relative!important;}
