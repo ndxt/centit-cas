@@ -1,0 +1,28 @@
+POST http://localhost:8080/cas/v1/tickets?service=http://localhost/app1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000&authType=password
+
+<> 2021-03-24T015805.201.html
+
+
+###
+
+POST http://localhost:8080/cas/v1/tickets/TGT-1-yednbfZg0f814-lRjdVeMVrZqdPUJob8rj-fljbLVzJ-Qch9fakxLXgddGizBv9s0UQcodefan-pc
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+service=http://localhost/app1
+
+<> 2021-03-24T021159.200.txt
+
+###
+
+GET http://localhost:8080/cas/p3/serviceValidate?service=http://localhost/app1&ticket=ST-1-5rS7yi0WEuHKiM3YNaKEt4I7Z7Ecodefan-pc
+
+<> 2021-03-24T021843.200.htmlk
+
+###
