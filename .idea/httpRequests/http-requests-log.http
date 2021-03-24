@@ -1,0 +1,227 @@
+POST http://localhost:8080/cas/v1/tickets?service=http://localhost/app1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000&authType=password
+
+<> 2021-03-24T111517.401.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets?service=http://localhost/app1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000&authType=password
+
+<> 2021-03-24T111228.401.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets?service=http://localhost/app1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000&authType=password
+
+<> 2021-03-24T110155.401.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets?service=localhost
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000&authType=password
+
+<> 2021-03-24T105218.500.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000&authType=password
+
+<> 2021-03-24T104948.401.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000&authType=password
+
+<> 2021-03-24T104656.401.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000&authType=password
+
+<> 2021-03-24T103947.401.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000&authType=password
+
+<> 2021-03-24T103945.401.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000&authType=password
+
+<> 2021-03-24T103223.401.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000&authType=password
+
+<> 2021-03-24T103216.401.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000&authType=password
+
+<> 2021-03-24T103213.401.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000&authType=password
+
+<> 2021-03-24T103150.401.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000
+
+<> 2021-03-24T102347.401.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000
+
+<> 2021-03-24T100615.401.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=000000
+
+<> 2021-03-24T100548.401.txt
+
+###
+
+POST http://localhost:8080/cas/v1/tickets
+Accept: */*
+Cache-Control: no-cache
+
+username=admin&password=000000
+
+<> 2021-03-24T100251.415.json
+
+###
+
+POST http://localhost:8080/cas/v1/tickets
+Accept: */*
+Cache-Control: no-cache
+
+username=admin&password=000000
+
+<> 2021-03-24T100233.415.json
+
+###
+
+POST http://localhost:8080/cas/v1/tickets2
+Accept: */*
+Cache-Control: no-cache
+
+username=admin&password=000000
+
+<> 2021-03-24T100223.404.json
+
+###
+
+POST http://localhost:8080/cas/v1/tickets
+Accept: */*
+Cache-Control: no-cache
+
+username=admin&password=000000
+
+<> 2021-03-24T100152.415.json
+
+###
+
+POST http://localhost:8080/cas
+Accept: */*
+Cache-Control: no-cache
+
+username=admin&password=000000
+
+###
+
+POST http://localhost:8080/cas
+Accept: */*
+Cache-Control: no-cache
+
+username=admin&password=000000
+
+###
+
+POST http://localhost:8080/cas
+Accept: */*
+Cache-Control: no-cache
+
+###
+

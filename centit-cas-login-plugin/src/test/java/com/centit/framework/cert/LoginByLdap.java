@@ -1,10 +1,6 @@
 package com.centit.framework.cert;
 
-import com.alibaba.fastjson.JSON;
 import com.centit.support.compiler.Pretreatment;
-import org.apache.commons.lang3.StringUtils;
-import org.apereo.cas.authentication.Credential;
-import org.apereo.cas.authentication.principal.Principal;
 
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
@@ -15,7 +11,6 @@ import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
-import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
