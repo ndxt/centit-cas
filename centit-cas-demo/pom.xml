@@ -24,11 +24,6 @@
             <artifactId>cas-server-support-rest</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.apereo.cas</groupId>
-            <artifactId>cas-server-support-rest-authentication</artifactId>
-        </dependency>
-
         <!--<dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-support-oauth</artifactId>

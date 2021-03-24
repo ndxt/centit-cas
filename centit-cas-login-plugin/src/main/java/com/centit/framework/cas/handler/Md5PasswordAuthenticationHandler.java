@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apereo.cas.authentication.AuthenticationHandlerExecutionResult;
 import org.apereo.cas.authentication.Credential;
 import org.apereo.cas.authentication.PreventedException;
+import org.apereo.cas.authentication.UsernamePasswordCredential;
 import org.apereo.cas.authentication.exceptions.AccountDisabledException;
 import org.apereo.cas.authentication.exceptions.AccountPasswordMustChangeException;
 import org.apereo.cas.authentication.handler.support.AbstractPreAndPostProcessingAuthenticationHandler;
@@ -44,8 +45,19 @@ public class Md5PasswordAuthenticationHandler extends AbstractPreAndPostProcessi
     @Override
     protected AuthenticationHandlerExecutionResult doAuthentication(Credential credential) throws GeneralSecurityException, PreventedException {
         //当用户名为admin,并且system为sso即允许通过
-        Md5PasswordCredential passwordCredential = (Md5PasswordCredential) credential;
-        if (StringUtils.isBlank(passwordCredential.getUsername())) {
+        String userName =null;
+        String userPwd=null;
+        if(credential instanceof Md5PasswordCredential) {
+            Md5PasswordCredential pc = (Md5PasswordCredential) credential;
+            userName = pc.getUsername();
+            userPwd = pc.getPassword();
+        }
+        if(credential instanceof UsernamePasswordCredential) {
+            UsernamePasswordCredential nc = (UsernamePasswordCredential) credential;
+            userName = nc.getUsername();
+            userPwd = nc.getPassword();
+        }
+        if (StringUtils.isBlank(userName)) {
             throw new AccountNotFoundException("输入的用户名为空！");
         }
         //这里可以自定义属性数据
@@ -56,14 +68,14 @@ public class Md5PasswordAuthenticationHandler extends AbstractPreAndPostProcessi
                 intParamsTimes = 1;
             Object [] param = new Object[intParamsTimes];
             for(int i=0;i<intParamsTimes;i++){
-                param[i] = passwordCredential.getUsername();
+                param[i] = userName;
             }
             JSONObject user = DatabaseAccess.getObjectAsJSON(conn,queryUserProperties.getSql(), param );
             if(user==null){
                 throw new AccountNotFoundException("用户找不到！");
             }
             String password = user.getString( DatabaseAccess.mapColumnNameToField(queryUserProperties.getPinField() ) );
-            if(!passwordEncoder.matches(passwordCredential.getPassword(), password )) {
+            if(!passwordEncoder.matches(userPwd, password )) {
                 throw new FailedLoginException("用户名密码不匹配。");
             }
 
@@ -81,7 +93,7 @@ public class Md5PasswordAuthenticationHandler extends AbstractPreAndPostProcessi
                 }
             }
 
-            String principal = passwordCredential.getUsername();
+            String principal = userName;
             String principalKey = queryUserProperties.getPrincipalField();
             if(StringUtils.isNotBlank(principalKey) && !"none".equalsIgnoreCase(principalKey)){
                 String tempPrincipal = user.getString(DatabaseAccess.mapColumnNameToField(principalKey));
@@ -93,14 +105,15 @@ public class Md5PasswordAuthenticationHandler extends AbstractPreAndPostProcessi
             return createHandlerResult(credential, this.principalFactory.createPrincipal( principal, user));
 
         }catch (SQLException | IOException e) {
-            throw new AccountNotFoundException("查找用户 "+passwordCredential.getUsername()+" 报错 "+ e.getLocalizedMessage());
+            throw new AccountNotFoundException("查找用户 "+userName+" 报错 "+ e.getLocalizedMessage());
         }
     }
 
 
     @Override
     public boolean supports(Credential credential) {
-        return credential instanceof Md5PasswordCredential;
+        return (credential instanceof Md5PasswordCredential)
+            || (credential instanceof UsernamePasswordCredential);
     }
 
     public void setPasswordEncoder(PasswordEncoder passwordEncoder) {

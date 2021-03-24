@@ -7,6 +7,7 @@ import org.apereo.cas.authentication.AuthenticationEventExecutionPlan;
 import org.apereo.cas.authentication.AuthenticationEventExecutionPlanConfigurer;
 import org.apereo.cas.authentication.AuthenticationHandler;
 import org.apereo.cas.authentication.principal.PrincipalFactory;
+import org.apereo.cas.authentication.principal.PrincipalResolver;
 import org.apereo.cas.services.ServicesManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -35,6 +36,10 @@ public class ComplexAuthEventExecutionPlanConfiguration
     @Autowired
     @Qualifier("acceptUsersPrincipalFactory")
     private PrincipalFactory acceptUsersPrincipalFactory;
+
+    @Autowired
+    @Qualifier("personDirectoryPrincipalResolver")
+    private PrincipalResolver personDirectoryPrincipalResolver;
     /**
      * 注册验证器
      * @return
@@ -65,8 +70,13 @@ public class ComplexAuthEventExecutionPlanConfiguration
     @Override
     public void configureAuthenticationExecutionPlan(final AuthenticationEventExecutionPlan plan) {
         //CentitPrincipalResolver resolver = new CentitPrincipalResolver();
+        //plan.
         plan.registerAuthenticationHandler(md5PasswordAuthenticationHandler());
         plan.registerAuthenticationHandler(ldapAuthenticationHandler());
+
+        plan.registerAuthenticationHandlerWithPrincipalResolver(md5PasswordAuthenticationHandler(),
+                personDirectoryPrincipalResolver);
+
     }
 
 }
